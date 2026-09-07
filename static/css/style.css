@@ -2,20 +2,22 @@
    方針: スマホ最優先 / 白猫（クリーム）＋黒猫（チャコール）/ 落ち着いた隠れ家 */
 
 :root {
-  --bg:        #f4ede0;   /* フォールバックのクリーム */
-  --bg-card:   rgba(255,253,249,.80);   /* 半透明カード：背景が透ける */
-  --bg-card-2: rgba(255,253,249,.92);
-  --veil:      rgba(247,241,231,.66);   /* 固定背景にかける薄いベール */
-  --ink:       #2a2622;   /* チャコール（黒猫） */
-  --muted:     #6f6459;
-  --line:      rgba(160,140,110,.28);
-  --accent:    #b0632f;   /* 干し柿＋ゴールド寄せ */
-  --accent-soft:rgba(240,217,201,.72);
-  --link:      #9a4a29;
+  --bg:        #e9dfce;   /* 画像/動画が出るまでのフォールバックのみ */
+  --bg-card:   rgba(255,252,246,.22);   /* ほぼ透明。blur で読ませる */
+  --bg-card-2: rgba(255,252,246,.30);
+  --veil:      rgba(250,244,234,.20);   /* 固定背景にかける“ごく薄い”ベール */
+  --ink:       #241f1b;
+  --muted:     #574c42;
+  --line:      rgba(255,255,255,.35);
+  --accent:    #a5551f;
+  --accent-soft:rgba(255,246,238,.30);
+  --link:      #8a3f1f;
   --maxw:      42rem;
-  --radius:    14px;
+  --radius:    16px;
+  --glass:     saturate(1.15) blur(16px);
+  --tshadow:   0 0 4px rgba(255,251,244,.98), 0 0 14px rgba(255,251,244,.9), 0 1px 3px rgba(120,90,50,.35);
 }
-/* このサイトは「白い豪華な世界観」に固定。ダークモードでも配色は動かさない（背景画像/動画が主役のため）。 */
+/* 「白い豪華」の世界観に固定。背景（画像/動画）が主役なので、パネルは極力透明にする。 */
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -34,22 +36,19 @@ body {
 /* ---- 全ページ共通の固定背景（トップ以外＝showroom画像 / トップ＝動画） ---- */
 .site-bg {
   position: fixed; inset: 0; z-index: -2; overflow: hidden;
-  background: #efe6d5 url("/static/img/bg-showroom.jpg") center top / cover no-repeat;
+  background: var(--bg) url("/static/img/bg-showroom.jpg") center center / cover no-repeat;
   transform: translateZ(0);
 }
-.site-bg::after {   /* 文字が読めるよう、背景に薄いベール（不透明パネルにはしない） */
+.site-bg::after {   /* ごく薄いベールのみ。背景をしっかり見せる */
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, var(--veil), rgba(247,241,231,.78));
+  background: var(--veil);
 }
 .page-home .site-bg { background-image: none; }
-.page-home .site-bg::after {
-  background: linear-gradient(180deg, rgba(255,251,244,.12) 0%, rgba(255,251,244,.30) 55%, rgba(255,251,244,.66) 100%);
-}
+.page-home .site-bg::after { background: rgba(255,251,244,.10); }
 .site-bg-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: center 28%;
 }
-/* コンテンツは固定背景の上を流れる。半透明なので背景が透ける */
 .site-header, main.wrap, .breadcrumb.wrap, .site-footer { position: relative; z-index: 1; }
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -58,45 +57,41 @@ strong { font-weight: 700; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 1rem; top: 1rem; background: var(--accent); color: #fff; padding: .4rem .8rem; border-radius: 6px; }
 
-/* header */
+/* header ── 透明。文字はフチだけで浮かせる */
 .site-header {
-  border-bottom: 1px solid var(--line);
-  background: rgba(250,246,239,.62);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  background: transparent;
   position: sticky; top: 0; z-index: 10;
 }
-.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .9rem; padding: .5rem 1.1rem; }
-.brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--ink); }
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .9rem; padding: .55rem 1.1rem; }
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; color: var(--ink); text-shadow: var(--tshadow); }
 .brand:hover { text-decoration: none; }
-.brand-avatar { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+.brand-avatar { width: 36px; height: 36px; border-radius: 50%; flex: none; filter: drop-shadow(0 1px 4px rgba(0,0,0,.25)); }
 .brand-text { font-size: .96rem; }
-.site-nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .9rem; }
-.site-nav a { color: var(--muted); }
+.site-nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .92rem; }
+.site-nav a { color: var(--ink); font-weight: 700; text-shadow: var(--tshadow); }
 .site-nav a:hover { color: var(--accent); text-decoration: none; }
 
-.breadcrumb { font-size: .8rem; color: var(--muted); padding-top: .9rem; }
+.breadcrumb { font-size: .82rem; color: var(--muted); padding-top: 1rem; text-shadow: var(--tshadow); }
 .breadcrumb a { color: var(--muted); }
 .breadcrumb span[aria-hidden] { margin: 0 .35rem; opacity: .5; }
 .breadcrumb span[aria-current] { color: var(--ink); }
 
-main { padding: 1.3rem 0 3rem; }
-/* 内ページ：コンテンツを半透明シートに乗せる（背景は縁・すき間から透ける） */
-body:not(.page-home) main.wrap {
-  background: rgba(255,253,249,.74);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  border-radius: 18px;
-  margin-top: 1rem; margin-bottom: 2rem;
-  padding: .6rem 1.1rem 2rem;
-  box-shadow: 0 10px 40px rgba(70,50,30,.14);
-}
-body:not(.page-home) .breadcrumb.wrap { padding-top: 1.1rem; }
-h1 { font-size: 1.5rem; line-height: 1.5; margin: .5rem 0 .9rem; }
-h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; }
+main { padding: 1.1rem 0 3rem; }
+h1 { font-size: 1.55rem; line-height: 1.5; margin: .5rem 0 .9rem; text-shadow: var(--tshadow); }
+h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; text-shadow: var(--tshadow); }
 h3 { font-size: 1rem; margin: 0 0 .3rem; }
-.lead { color: var(--muted); margin: 0 0 1.3rem; }
+.lead { color: var(--muted); margin: 0 0 1.3rem; text-shadow: var(--tshadow); }
 .muted { color: var(--muted); font-size: .88rem; }
-.block { margin: 2.2rem 0; }
-.block-title { border-left: 4px solid var(--accent); padding-left: .55rem; }
+.block { margin: 2rem 0; }
+.block-title { border-left: 4px solid var(--accent); padding-left: .55rem; text-shadow: var(--tshadow); }
+.src { text-shadow: var(--tshadow); }
+
+/* ── 半透明ガラス：背景が透けて見える。blur で文字を読ませる ── */
+.cal-grid a, .month-grid a, .angle-cards a, .kine, .fb-card, .hitokoto,
+.question, .today-jump {
+  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+  box-shadow: 0 4px 20px rgba(60,40,20,.10);
+}
 
 .btn {
   display: inline-block; background: var(--accent); color: #fff;
@@ -105,19 +100,18 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .btn:hover { text-decoration: none; opacity: .92; }
 .btn-ghost { background: transparent; color: var(--link); border: 1px solid var(--line); }
 
-/* ---- TOP ヒーロー（固定動画の上に、透明レイヤーで文字だけ） ---- */
-.page-home main.wrap { text-shadow: 0 1px 3px rgba(255,251,244,.9), 0 2px 16px rgba(255,251,244,.85); }
+/* ---- TOP ヒーロー（固定動画の上に、文字だけ） ---- */
 .hero {
   text-align: center;
-  padding: 46vh 0 2rem;   /* 動画をたっぷり見せてから文字 */
+  padding: 44vh 0 2rem;   /* 動画をたっぷり見せてから文字 */
 }
 .hero-cats { font-size: 1.9rem; margin: 0 0 .1rem; letter-spacing: .3rem; }
 .hero h1 { font-size: 1.7rem; margin: .1rem 0 .5rem; }
-.hero .lead { color: #3a312a; font-weight: 700; margin: 0 0 .9rem; }
-.hero-note { font-size: .84rem; color: #4a4038; margin: .7rem 0 0; }
+.hero .lead { color: var(--ink); font-weight: 700; margin: 0 0 .9rem; }
+.hero-note { font-size: .84rem; color: var(--muted); margin: .7rem 0 0; }
 .hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: .9rem 0 .2rem; }
-.hero .btn-ghost { background: rgba(255,251,244,.85); border-color: rgba(0,0,0,.12); }
-.page-home .block { background: var(--bg-card-2); border-radius: 18px; padding: 1rem 1.1rem 1.4rem; text-shadow: none; box-shadow: 0 10px 40px rgba(70,50,30,.14); }
+.hero .btn-ghost { background: rgba(255,251,244,.30); border-color: rgba(255,255,255,.5); color: var(--ink); }
+/* トップの各セクションも透明。カード類は下の共通ルールでガラス化 */
 
 /* ---- 月から入る：カレンダー画のアイコン ---- */
 .cal-grid {
@@ -201,12 +195,12 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .pager { display: flex; justify-content: space-between; gap: .5rem; margin: 1.8rem 0 0; font-size: .9rem; }
 .pager a { color: var(--link); }
 
-/* footer */
-.site-footer { border-top: 1px solid var(--line); margin-top: 2.5rem; padding: 1.6rem 0 2.5rem; background: rgba(250,246,239,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+/* footer ── 透明 */
+.site-footer { margin-top: 2.5rem; padding: 1.6rem 0 2.5rem; background: transparent; text-shadow: var(--tshadow); }
 .sns-row { display: flex; flex-wrap: wrap; gap: .8rem; }
-.sns-row a { color: var(--link); font-size: .9rem; }
+.sns-row a { color: var(--link); font-size: .9rem; font-weight: 600; }
 .footer-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .85rem; margin: .6rem 0; }
-.footer-links a { color: var(--muted); }
+.footer-links a { color: var(--ink); }
 .copyright { font-size: .82rem; color: var(--muted); margin: .4rem 0 .2rem; }
 .credit { font-size: .78rem; }
 .link-list li { margin: .5rem 0; }
@@ -229,7 +223,7 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
   .month-grid--lg { grid-template-columns: repeat(6, 1fr); }
   .cal-grid { grid-template-columns: repeat(3, 1fr); gap: .9rem; }
   .flower-block .fb-grid { grid-template-columns: 1fr 1fr; }
-  .hero-inner h1 { font-size: 2.1rem; }
+  .hero h1 { font-size: 2.1rem; }
 }
 @media (min-width: 60rem) {
   .cal-grid { grid-template-columns: repeat(4, 1fr); }
