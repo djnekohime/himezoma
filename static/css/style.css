@@ -77,7 +77,20 @@ strong { font-weight: 700; }
 .breadcrumb span[aria-current] { color: var(--ink); }
 
 main { padding: 1.1rem 0 3rem; }
-h1 { font-size: 1.55rem; line-height: 1.5; margin: .5rem 0 .9rem; text-shadow: var(--tshadow); }
+h1 {
+  position: relative; z-index: 0;
+  font-size: 1.55rem; line-height: 1.5; margin: .5rem 0 .9rem;
+  text-shadow: var(--tshadow);
+}
+/* 見出しの後ろだけ、ふわっとした白い光（パネルではない） */
+h1::before {
+  content: ""; position: absolute; z-index: -1;
+  left: -1.4em; right: -1.4em; top: -.5em; bottom: -.4em;
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(255,251,244,.92) 0%, rgba(255,251,244,.62) 45%, rgba(255,251,244,0) 80%);
+  filter: blur(14px);
+  pointer-events: none;
+}
 h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; text-shadow: var(--tshadow); }
 h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .lead { color: var(--muted); margin: 0 0 1.3rem; text-shadow: var(--tshadow); }
