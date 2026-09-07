@@ -14,6 +14,8 @@
         { "name": "DJ猫 YouTube",   "icon": "▶",  "handle": "",           "url": "https://www.youtube.com/channel/UCjvZsdBiQP1SLYddz7aiEbw" },
         { "name": "DJ猫姫 TikTok",  "icon": "🎵", "handle": "@djnekohime", "url": "https://www.tiktok.com/@djnekohime" },
         { "name": "DJ猫 TikTok",    "icon": "🎵", "handle": "@djnekocom",  "url": "https://www.tiktok.com/@djnekocom" },
+        { "name": "DJ猫姫 Instagram", "icon": "📷", "handle": "@djnekohime", "url": "https://www.instagram.com/djnekohime/" },
+        { "name": "DJ猫 Instagram",  "icon": "📷", "handle": "@djnekocom",  "url": "https://www.instagram.com/djnekocom/" },
         { "name": "DJ猫 X",         "icon": "𝕏",  "handle": "@djnekocom",  "url": "https://x.com/djnekocom" }
       ]
     },
@@ -21,7 +23,8 @@
       "name": "星占い（DJ猫姫）",
       "note": "12星座の運勢。",
       "accounts": [
-        { "name": "DJ猫姫 星占い TikTok", "icon": "🎵", "handle": "@djnekohime12", "url": "https://www.tiktok.com/@djnekohime12" }
+        { "name": "DJ猫姫 星占い TikTok", "icon": "🎵", "handle": "@djnekohime12", "url": "https://www.tiktok.com/@djnekohime12" },
+        { "name": "DJ猫姫の星座占い Instagram", "icon": "📷", "handle": "@djnekohime_zodiac", "url": "https://www.instagram.com/djnekohime_zodiac/" }
       ]
     },
     {
@@ -39,7 +42,7 @@
       ]
     }
   ],
-  "sns_pending": ["Instagram"],
+  "sns_pending": [],
   "sns_check": [
     "X: x.com/ancogames（あんこ姫側では？要確認）",
     "YouTube: @himekazoma「ひめかとゾーマの名言喫茶」（ここに載せる？要確認）"
