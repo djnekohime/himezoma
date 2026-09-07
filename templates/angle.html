@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ angle_title }}</h1>
+<p class="lead">全{{ total }}件。日付をえらぶとその日のページへ。</p>
+
+<ul class="kine-list">
+  {% for row in rows %}
+  <li class="kine">
+    <h3>
+      <a href="{{ row.day.slug }}" class="kine-date">{{ row.day.label }}</a>
+      {{ row.item.title }}{% if row.item.country and row.item.country != '日本' %} <span class="flag">／{{ row.item.country }}</span>{% endif %}
+    </h3>
+    {% if row.item.description %}<p class="kine-desc">{{ row.item.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

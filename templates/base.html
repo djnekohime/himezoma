@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ og_title|default(site.title, true) }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ og_description|default(site.description, true) }}{% endblock %}">
+{% set _ogimg = og_image|default('https://' ~ site.domain ~ '/static/img/ogp-default.png', true) %}
+<meta property="og:type" content="{{ og_type|default('website', true) }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ og_title|default(site.title, true) }}">
+<meta property="og:description" content="{{ og_description|default(site.description, true) }}">
+<meta property="og:image" content="{{ _ogimg }}">
+{% if og_url %}<meta property="og:url" content="{{ og_url }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+{% if site.adsense_client %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense_client }}" crossorigin="anonymous"></script>
+{% endif %}
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <span class="brand-cats" aria-hidden="true">🐈‍⬛🐈</span>
+      <span class="brand-text">{{ site.title }}</span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <a href="/today/">今日は何の日</a>
+      <a href="/kirikuchi/">切り口から</a>
+      <a href="/music/">音楽</a>
+      <a href="/links/">リンク</a>
+    </nav>
+  </div>
+</header>
+
+{% if breadcrumbs %}
+<nav class="breadcrumb wrap" aria-label="パンくずリスト">
+  {% for label, href in breadcrumbs %}
+    {% if href %}<a href="{{ href }}">{{ label }}</a><span aria-hidden="true">›</span>
+    {% else %}<span aria-current="page">{{ label }}</span>{% endif %}
+  {% endfor %}
+</nav>
+{% endif %}
+
+<main id="main" class="wrap">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="sns-row" aria-label="SNS">
+      {% for s in site.sns %}{% if s.url %}<a href="{{ s.url }}" title="{{ s.label }}">{{ s.icon }} {{ s.name }}</a>{% endif %}{% endfor %}
+    </p>
+    <p class="footer-links">
+      <a href="/today/">今日は何の日</a>
+      <a href="/kirikuchi/">切り口から探す</a>
+      <a href="/music/">HIMEZOMA / 音楽</a>
+      <a href="/links/">リンク</a>
+      <a href="/about/">このサイトについて</a>
+    </p>
+    <p class="copyright">&copy; {{ site.brand }} — {{ site.title }}</p>
+    <p class="credit muted">記念日データの出典：日本語版ウィキペディア各「◯月◯日」項目（CC BY-SA）。</p>
+  </div>
+</footer>
+</body>
+</html>

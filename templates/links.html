@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>リンク</h1>
+<p class="lead">ひめか＆ゾーマ（DJ猫姫 / DJ猫）の各SNS。プロフィールの「リンク」からここへ来られます。</p>
+<ul class="link-list">
+  {% for s in site.sns %}
+  <li>
+    {% if s.url %}<a href="{{ s.url }}" rel="me">{{ s.icon }} {{ s.label }}{% if s.handle %} <span class="muted">{{ s.handle }}</span>{% endif %}</a>
+    {% else %}<span class="muted">{{ s.icon }} {{ s.label }}（準備中）</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+<p class="muted">※ アカウントのURL・ジャンル分けはこれから追加します。</p>
+{% endblock %}

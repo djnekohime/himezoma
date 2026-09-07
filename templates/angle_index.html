@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>切り口から探す</h1>
+<p class="lead">同じ「今日は何の日」でも、角度を変えると別の楽しみ方ができます。</p>
+<ul class="angle-cards">
+  {% for key, label in angles %}
+  <li>
+    <a href="/kirikuchi/{{ key }}/">
+      <span class="a-label">{{ label }}</span>
+      <span class="a-count">{{ counts[key] }}件</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<p class="muted">※ 切り口は説明文からの自動分類です（暫定）。</p>
+{% endblock %}

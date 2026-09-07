@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>このサイトについて</h1>
+<p>{{ site.description }}</p>
+
+<h2 class="block-title">キャラクター</h2>
+<p><strong>ひめか</strong>（白猫）と <strong>ゾーマ</strong>（黒猫）。SNSでは「DJ猫姫 / DJ猫」名義でも活動、音楽は「{{ site.brand }}」名義。</p>
+
+<h2 class="block-title">記念日データについて</h2>
+<p>「今日は何の日」の記念日・年中行事は、日本語版ウィキペディアの各「◯月◯日」項目（クリエイティブ・コモンズ 表示-継承ライセンス / CC BY-SA）をもとにまとめています。各日ページの末尾に出典リンクを表示しています。</p>
+
+<h2 class="block-title">画像について</h2>
+<p>掲載している画像の多くは、制作者が生成AIを用いて独自に作成したものです。</p>
+{% endblock %}

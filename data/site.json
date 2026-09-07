@@ -1,0 +1,18 @@
+{
+  "title": "ひめかとゾーマの今日は何の日",
+  "brand": "HIMEZOMA",
+  "tagline": "白猫ひめかと黒猫ゾーマが、毎日をひとつずつめくっていく。",
+  "description": "白猫ひめかと黒猫ゾーマがおくる「今日は何の日」図鑑。366日ぶんの記念日・年中行事を、由来と語呂合わせつきで。",
+  "domain": "himezoma.pro",
+  "adsense_client": "",
+  "sns": [
+    { "name": "YouTube",   "icon": "▶",  "label": "YouTube（DJ猫姫 / DJ猫）", "handle": "@himekazoma", "url": "https://www.youtube.com/@himekazoma" },
+    { "name": "TikTok",    "icon": "🎵", "label": "TikTok（DJ猫姫 / DJ猫）",  "handle": "",           "url": "" },
+    { "name": "Instagram", "icon": "📷", "label": "Instagram",               "handle": "",           "url": "" },
+    { "name": "X",         "icon": "𝕏",  "label": "X",                       "handle": "",           "url": "" }
+  ],
+  "music": {
+    "project": "HIMEZOMA",
+    "note": "毎月のアニマル・ラップMV。詳細は後日ここに。"
+  }
+}

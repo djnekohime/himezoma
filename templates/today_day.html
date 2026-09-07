@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<article class="day">
+  <h1>{{ d.label }}は何の日？</h1>
+
+  {% if d.layer.theme_line %}
+  {# ── キャラ層（today.json 合流後に表示）── #}
+  <p class="theme-line">{{ d.layer.theme_line }}</p>
+  {% if d.layer.story %}<p class="story">{{ d.layer.story }}</p>{% endif %}
+  <ul class="lucky">
+    {% if d.layer.lucky_item %}<li>🍀 ラッキーアイテム：{{ d.layer.lucky_item }}</li>{% endif %}
+    {% if d.layer.lucky_food %}<li>🍴 ラッキーフード：{{ d.layer.lucky_food }}</li>{% endif %}
+    {% if d.layer.kotowaza %}<li>📜 ことわざ：{{ d.layer.kotowaza }}</li>{% endif %}
+    {% if d.layer.engi %}<li>🎋 縁起担ぎ：{{ d.layer.engi }}</li>{% endif %}
+  </ul>
+  {% else %}
+  <p class="lead">{{ d.label }}の記念日・年中行事は {{ d.count }} 件。</p>
+  {% endif %}
+
+  {% for key, label, items in groups %}
+  <section class="angle-block">
+    <h2 class="block-title">{{ label }}</h2>
+    <ul class="kine-list">
+      {% for it in items %}
+      <li class="kine">
+        <h3>{{ it.title }}{% if it.country and it.country != '日本' %} <span class="flag">／{{ it.country }}</span>{% endif %}</h3>
+        {% if it.note %}<p class="kine-note">※{{ it.note }}</p>{% endif %}
+        {% if it.description %}<p class="kine-desc">{{ it.description }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+
+  {% if d.flower.flower %}
+  <section class="angle-block flower-block">
+    <h2 class="block-title">{{ d.label }}の誕生花・誕生石</h2>
+    <div class="fb-grid">
+      <div class="fb-card">
+        <p class="fb-kind">誕生花</p>
+        <p class="fb-name">{{ d.flower.flower }}</p>
+        <p class="fb-mean">花言葉：{{ d.flower.flower_meanings|join('／') }}</p>
+      </div>
+      <div class="fb-card">
+        <p class="fb-kind">誕生石</p>
+        <p class="fb-name">{{ d.flower.birthstone }}<span class="fb-color">（{{ d.flower.birthstone_color }}）</span></p>
+        <p class="fb-mean">石言葉：{{ d.flower.birthstone_meanings|join('／') }}</p>
+      </div>
+    </div>
+    {% if d.flower.hitokoto %}
+    <blockquote class="hitokoto">{{ d.flower.hitokoto|replace('\n', '<br>')|safe }}</blockquote>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if d.layer.question %}<p class="question">{{ d.layer.question }}</p>{% endif %}
+
+  <p class="src muted">
+    出典：<a href="{{ d.source }}" rel="noopener" target="_blank">ウィキペディア「{{ d.label }}」</a>（CC BY-SA）
+  </p>
+
+  <nav class="pager">
+    <a href="{{ prev_d.slug }}">‹ {{ prev_d.label }}</a>
+    <a href="/today/{{ '%02d'|format(d.month) }}/">{{ month_labels[d.month-1] }}へ</a>
+    <a href="{{ next_d.slug }}">{{ next_d.label }} ›</a>
+  </nav>
+</article>
+
+{% endblock %}

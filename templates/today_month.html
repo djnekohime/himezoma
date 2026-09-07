@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ month_label }}は何の日？</h1>
+<p class="lead">{{ month_label }}の記念日・年中行事 全{{ month_items }}件（{{ days|length }}日分）。日付をえらぶと由来まで読めます。</p>
+
+<nav class="pager">
+  <a href="/today/{{ '%02d'|format(prev_m) }}/">‹ {{ month_labels[prev_m-1] }}</a>
+  <a href="/today/">12か月一覧</a>
+  <a href="/today/{{ '%02d'|format(next_m) }}/">{{ month_labels[next_m-1] }} ›</a>
+</nav>
+
+<ol class="day-list">
+  {% for x in days %}
+  <li>
+    <a href="{{ x.slug }}">
+      <span class="d-date">{{ x.day }}日</span>
+      <span class="d-names">{{ x['items'][:4]|map(attribute='title')|join('・') }}{% if x.count > 4 %} ほか{% endif %}</span>
+      <span class="d-count">{{ x.count }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+
+{% endblock %}

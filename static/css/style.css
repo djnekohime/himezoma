@@ -1,0 +1,185 @@
+/* ひめかとゾーマの今日は何の日 — v0 スタイル
+   方針: スマホ最優先 / 白猫（クリーム）＋黒猫（チャコール）/ 落ち着いた隠れ家 */
+
+:root {
+  --bg:        #f6f1e7;   /* クリーム（白猫） */
+  --bg-card:   #fffdf8;
+  --ink:       #2a2622;   /* チャコール（黒猫） */
+  --muted:     #7c7266;
+  --line:      #e6ddcc;
+  --accent:    #c8663d;   /* 干し柿・素焼き色 */
+  --accent-soft:#f0d9c9;
+  --link:      #a9502f;
+  --maxw:      42rem;
+  --radius:    14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #201d1a;
+    --bg-card: #2a2622;
+    --ink:     #ece5d8;
+    --muted:   #a99e8d;
+    --line:    #3c352d;
+    --accent:  #e08a5f;
+    --accent-soft:#3a2c22;
+    --link:    #e6a075;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+               "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  word-break: break-word;
+}
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { font-weight: 700; }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--accent); color: #fff; padding: .4rem .8rem; border-radius: 6px; }
+
+/* header */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 10;
+}
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .9rem; padding: .6rem 1.1rem; }
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--ink); }
+.brand:hover { text-decoration: none; }
+.brand-cats { font-size: 1.15rem; }
+.brand-text { font-size: .98rem; }
+.site-nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .9rem; }
+.site-nav a { color: var(--muted); }
+.site-nav a:hover { color: var(--accent); text-decoration: none; }
+
+.breadcrumb { font-size: .8rem; color: var(--muted); padding-top: .9rem; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb span[aria-hidden] { margin: 0 .35rem; opacity: .5; }
+.breadcrumb span[aria-current] { color: var(--ink); }
+
+main { padding: 1.3rem 0 3rem; }
+h1 { font-size: 1.5rem; line-height: 1.5; margin: .5rem 0 .9rem; }
+h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; }
+h3 { font-size: 1rem; margin: 0 0 .3rem; }
+.lead { color: var(--muted); margin: 0 0 1.3rem; }
+.muted { color: var(--muted); font-size: .88rem; }
+.block { margin: 2.2rem 0; }
+.block-title { border-left: 4px solid var(--accent); padding-left: .55rem; }
+
+/* hero */
+.page-home main { padding-top: 2rem; }
+.hero { text-align: center; padding: 1.5rem 0 1rem; }
+.hero-cats { font-size: 2.4rem; margin: 0 0 .3rem; letter-spacing: .3rem; }
+.hero h1 { font-size: 1.7rem; margin: .2rem 0 .5rem; }
+.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 .6rem; }
+.btn {
+  display: inline-block; background: var(--accent); color: #fff;
+  padding: .55rem 1.1rem; border-radius: 999px; font-weight: 700; font-size: .95rem;
+}
+.btn:hover { text-decoration: none; opacity: .92; }
+.btn-ghost { background: transparent; color: var(--link); border: 1px solid var(--line); }
+
+/* month grid */
+.month-grid { list-style: none; padding: 0; margin: .6rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+.month-grid--lg { grid-template-columns: repeat(3, 1fr); }
+.month-grid a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: .9rem .4rem; color: var(--ink); text-align: center; min-height: 5rem;
+}
+.month-grid a:hover { text-decoration: none; border-color: var(--accent); }
+.m-num { font-size: 1.7rem; font-weight: 800; line-height: 1; }
+.m-unit { font-size: .8rem; color: var(--muted); }
+.m-count { font-size: .75rem; color: var(--muted); margin-top: .3rem; }
+
+/* tag / angle rows */
+.tag-row, .angle-cards, .link-list { list-style: none; padding: 0; }
+.tag-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+.tag-row a {
+  display: inline-block; background: var(--accent-soft); color: var(--link);
+  padding: .35rem .8rem; border-radius: 999px; font-size: .88rem;
+}
+.tag-row a:hover { text-decoration: none; }
+.angle-cards { display: grid; gap: .6rem; }
+.angle-cards a {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: .9rem 1rem; color: var(--ink);
+}
+.angle-cards a:hover { text-decoration: none; border-color: var(--accent); }
+.a-count { color: var(--muted); font-size: .85rem; }
+
+.today-jump {
+  background: var(--accent-soft); border-radius: var(--radius);
+  padding: .7rem 1rem; margin: 0 0 1.2rem;
+}
+
+/* day list (month page) */
+.day-list { list-style: none; padding: 0; margin: 1rem 0; }
+.day-list li { border-bottom: 1px solid var(--line); }
+.day-list a {
+  display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: baseline;
+  gap: .6rem; padding: .7rem .2rem; color: var(--ink);
+}
+.day-list a:hover { text-decoration: none; background: var(--bg-card); }
+.d-date { font-weight: 800; color: var(--accent); }
+.d-names { color: var(--muted); font-size: .9rem; overflow: hidden; }
+.d-count { color: var(--muted); font-size: .78rem; }
+
+/* day page */
+.theme-line { font-size: 1.15rem; font-weight: 700; margin: .4rem 0 .6rem; }
+.story { color: var(--ink); }
+.lucky { list-style: none; padding: 0; margin: .8rem 0 1.4rem; display: grid; gap: .25rem; font-size: .95rem; }
+.angle-block { margin: 1.6rem 0; }
+.kine-list { list-style: none; padding: 0; margin: .6rem 0; }
+.kine { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; margin: .55rem 0; }
+.kine h3 { font-size: 1.02rem; }
+.kine .flag { font-size: .82rem; color: var(--muted); font-weight: 400; }
+.kine-note { color: var(--muted); font-size: .82rem; margin: .1rem 0 .3rem; }
+.kine-desc { margin: .2rem 0 0; }
+.kine-date { font-weight: 800; color: var(--accent); margin-right: .4rem; }
+.question { background: var(--accent-soft); border-radius: var(--radius); padding: .8rem 1rem; font-weight: 600; }
+.src { margin-top: 1.6rem; }
+
+/* pager */
+.pager { display: flex; justify-content: space-between; gap: .5rem; margin: 1.8rem 0 0; font-size: .9rem; }
+.pager a { color: var(--link); }
+
+/* footer */
+.site-footer { border-top: 1px solid var(--line); margin-top: 2.5rem; padding: 1.6rem 0 2.5rem; background: var(--bg-card); }
+.sns-row { display: flex; flex-wrap: wrap; gap: .8rem; }
+.sns-row a { color: var(--link); font-size: .9rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .85rem; margin: .6rem 0; }
+.footer-links a { color: var(--muted); }
+.copyright { font-size: .82rem; color: var(--muted); margin: .4rem 0 .2rem; }
+.credit { font-size: .78rem; }
+.link-list li { margin: .5rem 0; }
+
+/* 誕生花・誕生石 */
+.flower-block .fb-grid { display: grid; gap: .6rem; }
+.fb-card { background: var(--accent-soft); border-radius: var(--radius); padding: .8rem 1rem; }
+.fb-kind { font-size: .78rem; color: var(--muted); margin: 0 0 .2rem; letter-spacing: .06em; }
+.fb-name { font-size: 1.1rem; font-weight: 800; margin: 0 0 .2rem; }
+.fb-color { font-size: .82rem; color: var(--muted); font-weight: 400; }
+.fb-mean { margin: 0; font-size: .92rem; }
+.hitokoto {
+  margin: 1rem 0 0; padding: .9rem 1rem; border-left: 4px solid var(--accent);
+  background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 1rem; line-height: 1.7;
+}
+
+@media (min-width: 40rem) {
+  .month-grid { grid-template-columns: repeat(4, 1fr); }
+  .month-grid--lg { grid-template-columns: repeat(6, 1fr); }
+  .flower-block .fb-grid { grid-template-columns: 1fr 1fr; }
+}
