@@ -16,6 +16,7 @@
         { "name": "DJ猫 TikTok",    "icon": "🎵", "handle": "@djnekocom",  "url": "https://www.tiktok.com/@djnekocom" },
         { "name": "DJ猫姫 Instagram", "icon": "📷", "handle": "@djnekohime", "url": "https://www.instagram.com/djnekohime/" },
         { "name": "DJ猫 Instagram",  "icon": "📷", "handle": "@djnekocom",  "url": "https://www.instagram.com/djnekocom/" },
+        { "name": "DJ猫姫 X",       "icon": "𝕏",  "handle": "@ancogames",  "url": "https://x.com/ancogames" },
         { "name": "DJ猫 X",         "icon": "𝕏",  "handle": "@djnekocom",  "url": "https://x.com/djnekocom" }
       ]
     },
@@ -39,13 +40,6 @@
       "note": "毎月のアニマル・ラップMVなど、音楽活動。",
       "accounts": [
         { "name": "Himezoma 音楽 YouTube", "icon": "▶", "handle": "@himekacat", "url": "https://www.youtube.com/@himekacat" }
-      ]
-    },
-    {
-      "name": "制作",
-      "note": "ひめか＆ゾーマを制作しているアカウント。",
-      "accounts": [
-        { "name": "あんこ姫 X", "icon": "𝕏", "handle": "@ancogames", "url": "https://x.com/ancogames" }
       ]
     }
   ],
