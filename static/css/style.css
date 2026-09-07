@@ -76,12 +76,6 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .block { margin: 2.2rem 0; }
 .block-title { border-left: 4px solid var(--accent); padding-left: .55rem; }
 
-/* hero */
-.page-home main { padding-top: 2rem; }
-.hero { text-align: center; padding: 1.5rem 0 1rem; }
-.hero-cats { font-size: 2.4rem; margin: 0 0 .3rem; letter-spacing: .3rem; }
-.hero h1 { font-size: 1.7rem; margin: .2rem 0 .5rem; }
-.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 .6rem; }
 .btn {
   display: inline-block; background: var(--accent); color: #fff;
   padding: .55rem 1.1rem; border-radius: 999px; font-weight: 700; font-size: .95rem;
@@ -89,9 +83,62 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .btn:hover { text-decoration: none; opacity: .92; }
 .btn-ghost { background: transparent; color: var(--link); border: 1px solid var(--line); }
 
-/* month grid */
+/* ---- TOP: 動画壁紙ステージ ＋ 透明レイヤー ---- */
+.hero-stage {
+  position: relative;
+  min-height: 62vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: -1;
+  /* 動画が入るまでの仮の下地（白い豪華な寝室＝白＋シャンパンゴールド）。動画差し込み時に不要になる */
+  background:
+    radial-gradient(120% 90% at 70% 15%, #fffdf9 0%, #f3ebdd 55%, #e9dcc6 100%);
+}
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.hero-inner {
+  /* ここは透明のまま：下の動画が見える。文字は白フチで可読性を確保 */
+  background: transparent;
+  text-align: center;
+  max-width: var(--maxw);
+  padding: 2.6rem 1.2rem;
+  color: var(--ink);
+  text-shadow: 0 1px 10px rgba(255,255,255,.85), 0 1px 2px rgba(255,255,255,.9);
+}
+.hero-inner .hero-cats { font-size: 2.4rem; margin: 0 0 .2rem; letter-spacing: .3rem; }
+.hero-inner h1 { font-size: 1.75rem; margin: .2rem 0 .5rem; }
+.hero-inner .lead { color: #4a4038; margin: 0 0 1rem; }
+.hero-inner .hero-note { font-size: .86rem; color: #5a5049; margin: .7rem 0 0; }
+.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 .4rem; }
+:root:not([data-theme="light"]) .hero-inner,
+[data-theme="dark"] .hero-inner {
+  text-shadow: 0 1px 10px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.7);
+}
+
+/* ---- 月から入る：カレンダー画のアイコン ---- */
+.cal-grid {
+  list-style: none; padding: 0; margin: .8rem 0;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem;
+}
+.cal-grid a {
+  display: block; color: var(--ink); border-radius: var(--radius); overflow: hidden;
+  background: var(--bg-card); border: 1px solid var(--line);
+}
+.cal-grid a:hover { text-decoration: none; border-color: var(--accent); }
+.cal-grid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.cal-cap {
+  display: flex; align-items: baseline; gap: .5rem;
+  padding: .5rem .7rem; font-size: .9rem; color: var(--muted);
+}
+.cal-cap b { font-size: 1.05rem; color: var(--ink); font-weight: 800; }
+
+/* 月グリッド（今日は何の日トップ側の文字カード） */
 .month-grid { list-style: none; padding: 0; margin: .6rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
-.month-grid--lg { grid-template-columns: repeat(3, 1fr); }
 .month-grid a {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius);
@@ -181,5 +228,10 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 @media (min-width: 40rem) {
   .month-grid { grid-template-columns: repeat(4, 1fr); }
   .month-grid--lg { grid-template-columns: repeat(6, 1fr); }
+  .cal-grid { grid-template-columns: repeat(3, 1fr); gap: .9rem; }
   .flower-block .fb-grid { grid-template-columns: 1fr 1fr; }
+  .hero-inner h1 { font-size: 2.1rem; }
+}
+@media (min-width: 60rem) {
+  .cal-grid { grid-template-columns: repeat(4, 1fr); }
 }
