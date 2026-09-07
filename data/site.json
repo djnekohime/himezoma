@@ -40,11 +40,17 @@
       "accounts": [
         { "name": "Himezoma 音楽 YouTube", "icon": "▶", "handle": "@himekacat", "url": "https://www.youtube.com/@himekacat" }
       ]
+    },
+    {
+      "name": "制作",
+      "note": "ひめか＆ゾーマを制作しているアカウント。",
+      "accounts": [
+        { "name": "あんこ姫 X", "icon": "𝕏", "handle": "@ancogames", "url": "https://x.com/ancogames" }
+      ]
     }
   ],
   "sns_pending": [],
   "sns_check": [
-    "X: x.com/ancogames（あんこ姫側では？要確認）",
     "YouTube: @himekazoma「ひめかとゾーマの名言喫茶」（ここに載せる？要確認）"
   ],
   "music": {
