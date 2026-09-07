@@ -86,39 +86,41 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 /* ---- TOP: 動画壁紙ステージ ＋ 透明レイヤー ---- */
 .hero-stage {
   position: relative;
-  min-height: 62vh;
-  display: flex; align-items: center; justify-content: center;
+  min-height: 68vh;
+  display: flex; align-items: flex-end; justify-content: center;
   overflow: hidden;
   isolation: isolate;
 }
 .hero-bg {
-  position: absolute; inset: 0; z-index: -1;
-  /* 動画が入るまでの仮の下地（白い豪華な寝室＝白＋シャンパンゴールド）。動画差し込み時に不要になる */
+  position: absolute; inset: 0; z-index: -2;
+  /* 動画読み込み前 / 失敗時の下地（白い豪華な寝室＝白＋シャンパンゴールド） */
   background:
     radial-gradient(120% 90% at 70% 15%, #fffdf9 0%, #f3ebdd 55%, #e9dcc6 100%);
 }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
+  object-fit: cover; object-position: center 30%;
+}
+/* 文字の下だけ、ごく薄い白フェード。動画はほぼ見えたまま（不透明パネルにはしない） */
+.hero-stage::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 55%; z-index: -1;
+  background: linear-gradient(180deg, rgba(255,251,244,0) 0%, rgba(255,251,244,.30) 55%, rgba(255,251,244,.72) 100%);
+  pointer-events: none;
 }
 .hero-inner {
-  /* ここは透明のまま：下の動画が見える。文字は白フチで可読性を確保 */
   background: transparent;
   text-align: center;
   max-width: var(--maxw);
-  padding: 2.6rem 1.2rem;
+  padding: 1.4rem 1.2rem 1.8rem;
   color: var(--ink);
-  text-shadow: 0 1px 10px rgba(255,255,255,.85), 0 1px 2px rgba(255,255,255,.9);
+  text-shadow: 0 1px 3px rgba(255,251,244,.95), 0 2px 14px rgba(255,251,244,.9);
 }
-.hero-inner .hero-cats { font-size: 2.4rem; margin: 0 0 .2rem; letter-spacing: .3rem; }
-.hero-inner h1 { font-size: 1.75rem; margin: .2rem 0 .5rem; }
-.hero-inner .lead { color: #4a4038; margin: 0 0 1rem; }
-.hero-inner .hero-note { font-size: .86rem; color: #5a5049; margin: .7rem 0 0; }
-.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0 .4rem; }
-:root:not([data-theme="light"]) .hero-inner,
-[data-theme="dark"] .hero-inner {
-  text-shadow: 0 1px 10px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.7);
-}
+.hero-inner .hero-cats { font-size: 1.9rem; margin: 0 0 .1rem; letter-spacing: .3rem; }
+.hero-inner h1 { font-size: 1.6rem; margin: .1rem 0 .5rem; }
+.hero-inner .lead { color: #3f352d; font-weight: 600; margin: 0 0 .9rem; }
+.hero-inner .hero-note { font-size: .84rem; color: #4f453d; margin: .6rem 0 0; }
+.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: .8rem 0 .2rem; }
+.hero-inner .btn-ghost { background: rgba(255,251,244,.82); border-color: rgba(0,0,0,.12); }
 
 /* ---- 月から入る：カレンダー画のアイコン ---- */
 .cal-grid {
