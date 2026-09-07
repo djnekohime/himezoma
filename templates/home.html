@@ -2,31 +2,26 @@
 {% block title %}{{ site.title }}｜{{ site.tagline }}{% endblock %}
 {% block body_class %}page-home{% endblock %}
 
-{% block splash %}
-{# TOP の壁紙は動画（制作中）。hero-bg に動画を入れる。
-   その上のレイヤー(.hero-inner)の背景は透明にして、動画が見えるようにしてある。
-   配色メモ：TOPの映像は「白い豪華なスマートハウスの寝室」から始まる想定 → 白・シャンパンゴールド寄せ。 #}
-<section class="hero-stage">
-  <div class="hero-bg" aria-hidden="true">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto"
-           poster="/static/img/hero-poster.jpg">
-      <source src="/static/video/hero.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-inner">
-    <p class="hero-cats" aria-hidden="true">🐈‍⬛　🐈</p>
-    <h1>{{ site.title }}</h1>
-    <p class="lead">{{ site.tagline }}</p>
-    <p class="hero-actions">
-      <a class="btn" href="/today/">今日は何の日を見る</a>
-      <a class="btn btn-ghost" href="/kirikuchi/">切り口から探す</a>
-    </p>
-    <p class="hero-note">366日ぶん・記念日 {{ total_items }} 件を、由来と語呂合わせつきで。</p>
-  </div>
-</section>
+{# トップの固定背景＝動画（白い豪華なスマートハウスの寝室）。他ページは showroom 画像。 #}
+{% block sitebg %}
+<video class="site-bg-video" autoplay muted loop playsinline preload="auto"
+       poster="/static/img/hero-poster.jpg">
+  <source src="/static/video/hero.mp4" type="video/mp4">
+</video>
 {% endblock %}
 
 {% block content %}
+
+<section class="hero">
+  <p class="hero-cats" aria-hidden="true">🐈‍⬛　🐈</p>
+  <h1>{{ site.title }}</h1>
+  <p class="lead">{{ site.tagline }}</p>
+  <p class="hero-actions">
+    <a class="btn" href="/today/">今日は何の日を見る</a>
+    <a class="btn btn-ghost" href="/kirikuchi/">切り口から探す</a>
+  </p>
+  <p class="hero-note">366日ぶん・記念日 {{ total_items }} 件を、由来と語呂合わせつきで。</p>
+</section>
 
 <section class="block">
   <h2 class="block-title">月から入る</h2>

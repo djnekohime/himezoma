@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ og_title|default(site.title, true) }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ og_description|default(site.description, true) }}{% endblock %}">
-{% set _ogimg = og_image|default('https://' ~ site.domain ~ '/static/img/ogp-default.png', true) %}
+{% set _ogimg = og_image|default('https://' ~ site.domain ~ '/static/img/ogp-default.jpg', true) %}
 <meta property="og:type" content="{{ og_type|default('website', true) }}">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ og_title|default(site.title, true) }}">
@@ -17,15 +17,20 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense_client }}" crossorigin="anonymous"></script>
 {% endif %}
 <link rel="stylesheet" href="/static/css/style.css">
-<link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16.png">
+<link rel="apple-touch-icon" href="/static/img/favicon-180.png">
 </head>
 <body class="{% block body_class %}{% endblock %}">
 <a class="skip" href="#main">本文へスキップ</a>
 
+{# ── 全ページ共通の固定背景。トップ以外＝showroom画像 / トップ＝動画（home.html が差し替え） ── #}
+<div class="site-bg" aria-hidden="true">{% block sitebg %}{% endblock %}</div>
+
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">
-      <span class="brand-cats" aria-hidden="true">🐈‍⬛🐈</span>
+      <img class="brand-avatar" src="/static/img/avatar.png" width="96" height="96" alt="" aria-hidden="true">
       <span class="brand-text">{{ site.title }}</span>
     </a>
     <nav class="site-nav" aria-label="メインメニュー">

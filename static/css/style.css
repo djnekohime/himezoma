@@ -2,29 +2,20 @@
    方針: スマホ最優先 / 白猫（クリーム）＋黒猫（チャコール）/ 落ち着いた隠れ家 */
 
 :root {
-  --bg:        #f6f1e7;   /* クリーム（白猫） */
-  --bg-card:   #fffdf8;
+  --bg:        #f4ede0;   /* フォールバックのクリーム */
+  --bg-card:   rgba(255,253,249,.80);   /* 半透明カード：背景が透ける */
+  --bg-card-2: rgba(255,253,249,.92);
+  --veil:      rgba(247,241,231,.66);   /* 固定背景にかける薄いベール */
   --ink:       #2a2622;   /* チャコール（黒猫） */
-  --muted:     #7c7266;
-  --line:      #e6ddcc;
-  --accent:    #c8663d;   /* 干し柿・素焼き色 */
-  --accent-soft:#f0d9c9;
-  --link:      #a9502f;
+  --muted:     #6f6459;
+  --line:      rgba(160,140,110,.28);
+  --accent:    #b0632f;   /* 干し柿＋ゴールド寄せ */
+  --accent-soft:rgba(240,217,201,.72);
+  --link:      #9a4a29;
   --maxw:      42rem;
   --radius:    14px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:      #201d1a;
-    --bg-card: #2a2622;
-    --ink:     #ece5d8;
-    --muted:   #a99e8d;
-    --line:    #3c352d;
-    --accent:  #e08a5f;
-    --accent-soft:#3a2c22;
-    --link:    #e6a075;
-  }
-}
+/* このサイトは「白い豪華な世界観」に固定。ダークモードでも配色は動かさない（背景画像/動画が主役のため）。 */
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -39,6 +30,27 @@ body {
   word-break: break-word;
 }
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
+
+/* ---- 全ページ共通の固定背景（トップ以外＝showroom画像 / トップ＝動画） ---- */
+.site-bg {
+  position: fixed; inset: 0; z-index: -2; overflow: hidden;
+  background: #efe6d5 url("/static/img/bg-showroom.jpg") center top / cover no-repeat;
+  transform: translateZ(0);
+}
+.site-bg::after {   /* 文字が読めるよう、背景に薄いベール（不透明パネルにはしない） */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--veil), rgba(247,241,231,.78));
+}
+.page-home .site-bg { background-image: none; }
+.page-home .site-bg::after {
+  background: linear-gradient(180deg, rgba(255,251,244,.12) 0%, rgba(255,251,244,.30) 55%, rgba(255,251,244,.66) 100%);
+}
+.site-bg-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 28%;
+}
+/* コンテンツは固定背景の上を流れる。半透明なので背景が透ける */
+.site-header, main.wrap, .breadcrumb.wrap, .site-footer { position: relative; z-index: 1; }
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 strong { font-weight: 700; }
@@ -49,15 +61,15 @@ strong { font-weight: 700; }
 /* header */
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  background: rgba(250,246,239,.62);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   position: sticky; top: 0; z-index: 10;
 }
-.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .9rem; padding: .6rem 1.1rem; }
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .9rem; padding: .5rem 1.1rem; }
 .brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; color: var(--ink); }
 .brand:hover { text-decoration: none; }
-.brand-cats { font-size: 1.15rem; }
-.brand-text { font-size: .98rem; }
+.brand-avatar { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+.brand-text { font-size: .96rem; }
 .site-nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .9rem; }
 .site-nav a { color: var(--muted); }
 .site-nav a:hover { color: var(--accent); text-decoration: none; }
@@ -68,6 +80,16 @@ strong { font-weight: 700; }
 .breadcrumb span[aria-current] { color: var(--ink); }
 
 main { padding: 1.3rem 0 3rem; }
+/* 内ページ：コンテンツを半透明シートに乗せる（背景は縁・すき間から透ける） */
+body:not(.page-home) main.wrap {
+  background: rgba(255,253,249,.74);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-radius: 18px;
+  margin-top: 1rem; margin-bottom: 2rem;
+  padding: .6rem 1.1rem 2rem;
+  box-shadow: 0 10px 40px rgba(70,50,30,.14);
+}
+body:not(.page-home) .breadcrumb.wrap { padding-top: 1.1rem; }
 h1 { font-size: 1.5rem; line-height: 1.5; margin: .5rem 0 .9rem; }
 h2 { font-size: 1.15rem; margin: 2rem 0 .7rem; }
 h3 { font-size: 1rem; margin: 0 0 .3rem; }
@@ -83,44 +105,19 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .btn:hover { text-decoration: none; opacity: .92; }
 .btn-ghost { background: transparent; color: var(--link); border: 1px solid var(--line); }
 
-/* ---- TOP: 動画壁紙ステージ ＋ 透明レイヤー ---- */
-.hero-stage {
-  position: relative;
-  min-height: 68vh;
-  display: flex; align-items: flex-end; justify-content: center;
-  overflow: hidden;
-  isolation: isolate;
-}
-.hero-bg {
-  position: absolute; inset: 0; z-index: -2;
-  /* 動画読み込み前 / 失敗時の下地（白い豪華な寝室＝白＋シャンパンゴールド） */
-  background:
-    radial-gradient(120% 90% at 70% 15%, #fffdf9 0%, #f3ebdd 55%, #e9dcc6 100%);
-}
-.hero-video {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 30%;
-}
-/* 文字の下だけ、ごく薄い白フェード。動画はほぼ見えたまま（不透明パネルにはしない） */
-.hero-stage::after {
-  content: ""; position: absolute; inset: auto 0 0 0; height: 55%; z-index: -1;
-  background: linear-gradient(180deg, rgba(255,251,244,0) 0%, rgba(255,251,244,.30) 55%, rgba(255,251,244,.72) 100%);
-  pointer-events: none;
-}
-.hero-inner {
-  background: transparent;
+/* ---- TOP ヒーロー（固定動画の上に、透明レイヤーで文字だけ） ---- */
+.page-home main.wrap { text-shadow: 0 1px 3px rgba(255,251,244,.9), 0 2px 16px rgba(255,251,244,.85); }
+.hero {
   text-align: center;
-  max-width: var(--maxw);
-  padding: 1.4rem 1.2rem 1.8rem;
-  color: var(--ink);
-  text-shadow: 0 1px 3px rgba(255,251,244,.95), 0 2px 14px rgba(255,251,244,.9);
+  padding: 46vh 0 2rem;   /* 動画をたっぷり見せてから文字 */
 }
-.hero-inner .hero-cats { font-size: 1.9rem; margin: 0 0 .1rem; letter-spacing: .3rem; }
-.hero-inner h1 { font-size: 1.6rem; margin: .1rem 0 .5rem; }
-.hero-inner .lead { color: #3f352d; font-weight: 600; margin: 0 0 .9rem; }
-.hero-inner .hero-note { font-size: .84rem; color: #4f453d; margin: .6rem 0 0; }
-.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: .8rem 0 .2rem; }
-.hero-inner .btn-ghost { background: rgba(255,251,244,.82); border-color: rgba(0,0,0,.12); }
+.hero-cats { font-size: 1.9rem; margin: 0 0 .1rem; letter-spacing: .3rem; }
+.hero h1 { font-size: 1.7rem; margin: .1rem 0 .5rem; }
+.hero .lead { color: #3a312a; font-weight: 700; margin: 0 0 .9rem; }
+.hero-note { font-size: .84rem; color: #4a4038; margin: .7rem 0 0; }
+.hero-actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin: .9rem 0 .2rem; }
+.hero .btn-ghost { background: rgba(255,251,244,.85); border-color: rgba(0,0,0,.12); }
+.page-home .block { background: var(--bg-card-2); border-radius: 18px; padding: 1rem 1.1rem 1.4rem; text-shadow: none; box-shadow: 0 10px 40px rgba(70,50,30,.14); }
 
 /* ---- 月から入る：カレンダー画のアイコン ---- */
 .cal-grid {
@@ -191,7 +188,7 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .lucky { list-style: none; padding: 0; margin: .8rem 0 1.4rem; display: grid; gap: .25rem; font-size: .95rem; }
 .angle-block { margin: 1.6rem 0; }
 .kine-list { list-style: none; padding: 0; margin: .6rem 0; }
-.kine { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; margin: .55rem 0; }
+.kine { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; margin: .55rem 0; }
 .kine h3 { font-size: 1.02rem; }
 .kine .flag { font-size: .82rem; color: var(--muted); font-weight: 400; }
 .kine-note { color: var(--muted); font-size: .82rem; margin: .1rem 0 .3rem; }
@@ -205,7 +202,7 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .pager a { color: var(--link); }
 
 /* footer */
-.site-footer { border-top: 1px solid var(--line); margin-top: 2.5rem; padding: 1.6rem 0 2.5rem; background: var(--bg-card); }
+.site-footer { border-top: 1px solid var(--line); margin-top: 2.5rem; padding: 1.6rem 0 2.5rem; background: rgba(250,246,239,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .sns-row { display: flex; flex-wrap: wrap; gap: .8rem; }
 .sns-row a { color: var(--link); font-size: .9rem; }
 .footer-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .85rem; margin: .6rem 0; }
@@ -216,14 +213,14 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 
 /* 誕生花・誕生石 */
 .flower-block .fb-grid { display: grid; gap: .6rem; }
-.fb-card { background: var(--accent-soft); border-radius: var(--radius); padding: .8rem 1rem; }
+.fb-card { background: var(--bg-card-2); border-radius: var(--radius); padding: .8rem 1rem; }
 .fb-kind { font-size: .78rem; color: var(--muted); margin: 0 0 .2rem; letter-spacing: .06em; }
 .fb-name { font-size: 1.1rem; font-weight: 800; margin: 0 0 .2rem; }
 .fb-color { font-size: .82rem; color: var(--muted); font-weight: 400; }
 .fb-mean { margin: 0; font-size: .92rem; }
 .hitokoto {
   margin: 1rem 0 0; padding: .9rem 1rem; border-left: 4px solid var(--accent);
-  background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--bg-card-2); border-radius: 0 var(--radius) var(--radius) 0;
   font-size: 1rem; line-height: 1.7;
 }
 
