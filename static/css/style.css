@@ -196,9 +196,22 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .d-count { color: var(--muted); font-size: .78rem; }
 
 /* day page */
-.theme-line { font-size: 1.15rem; font-weight: 700; margin: .4rem 0 .6rem; }
-.story { color: var(--ink); }
-.lucky { list-style: none; padding: 0; margin: .8rem 0 1.4rem; display: grid; gap: .25rem; font-size: .95rem; }
+.theme-line { font-size: 1.18rem; font-weight: 800; margin: .4rem 0 .6rem; color: var(--ink); text-shadow: var(--tshadow); }
+.story {
+  color: var(--ink); margin: .6rem 0 1rem; line-height: 1.9;
+  background: var(--bg-card); border-radius: 14px; padding: .9rem 1.1rem;
+  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+}
+.pick {
+  margin: .5rem 0 .9rem; font-weight: 700; color: var(--link);
+  text-shadow: var(--tshadow);
+}
+.lucky {
+  list-style: none; padding: .9rem 1.1rem; margin: .8rem 0 1.4rem;
+  display: grid; gap: .35rem; font-size: .95rem;
+  background: var(--bg-card); border-radius: 14px;
+  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
+}
 .angle-block { margin: 1.6rem 0; }
 .kine-list { list-style: none; padding: 0; margin: .6rem 0; }
 .kine { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; margin: .55rem 0; }

@@ -5,12 +5,15 @@
   <h1>{{ d.label }}は何の日？</h1>
 
   {% if d.layer.theme_line %}
-  {# ── キャラ層（today.json 合流後に表示）── #}
+  {# ── ひめか＆ゾーマの語り（SNS投稿から）── #}
   <p class="theme-line">{{ d.layer.theme_line }}</p>
-  {% if d.layer.story %}<p class="story">{{ d.layer.story }}</p>{% endif %}
+  {% if d.layer.story %}<p class="story">{{ d.layer.story|replace('\n', '<br>')|safe }}</p>{% endif %}
+  {% if d.layer.highlight %}
+  <p class="pick">今日のピック：{{ d.layer.highlight|join(' ・ ') }}</p>
+  {% endif %}
   <ul class="lucky">
     {% if d.layer.lucky_item %}<li>🍀 ラッキーアイテム：{{ d.layer.lucky_item }}</li>{% endif %}
-    {% if d.layer.lucky_food %}<li>🍴 ラッキーフード：{{ d.layer.lucky_food }}</li>{% endif %}
+    {% if d.layer.lucky_food %}<li>🍛 ラッキーフード：{{ d.layer.lucky_food }}</li>{% endif %}
     {% if d.layer.kotowaza %}<li>📜 ことわざ：{{ d.layer.kotowaza }}</li>{% endif %}
     {% if d.layer.engi %}<li>🎋 縁起担ぎ：{{ d.layer.engi }}</li>{% endif %}
   </ul>
