@@ -7,12 +7,28 @@
   "adsense_client": "",
   "link_groups": [
     {
-      "name": "DJ猫姫 / DJ猫（今日は何の日）",
-      "note": "毎日の「今日は何の日」動画はこちら。",
+      "name": "今日は何の日（DJ猫姫 / DJ猫）",
+      "note": "毎日の「今日は何の日」動画。",
       "accounts": [
         { "name": "DJ猫姫 YouTube", "icon": "▶",  "handle": "@DJNEKOHIME", "url": "https://www.youtube.com/@DJNEKOHIME" },
         { "name": "DJ猫 YouTube",   "icon": "▶",  "handle": "",           "url": "https://www.youtube.com/channel/UCjvZsdBiQP1SLYddz7aiEbw" },
-        { "name": "DJ猫 TikTok",    "icon": "🎵", "handle": "@djnekocom",  "url": "https://www.tiktok.com/@djnekocom" }
+        { "name": "DJ猫姫 TikTok",  "icon": "🎵", "handle": "@djnekohime", "url": "https://www.tiktok.com/@djnekohime" },
+        { "name": "DJ猫 TikTok",    "icon": "🎵", "handle": "@djnekocom",  "url": "https://www.tiktok.com/@djnekocom" },
+        { "name": "DJ猫 X",         "icon": "𝕏",  "handle": "@djnekocom",  "url": "https://x.com/djnekocom" }
+      ]
+    },
+    {
+      "name": "星占い（DJ猫姫）",
+      "note": "12星座の運勢。",
+      "accounts": [
+        { "name": "DJ猫姫 星占い TikTok", "icon": "🎵", "handle": "@djnekohime12", "url": "https://www.tiktok.com/@djnekohime12" }
+      ]
+    },
+    {
+      "name": "ひめかとゾーマのお悩み相談室",
+      "note": "",
+      "accounts": [
+        { "name": "お悩み相談室 TikTok", "icon": "🎵", "handle": "@himezoma", "url": "https://www.tiktok.com/@himezoma" }
       ]
     },
     {
@@ -23,7 +39,11 @@
       ]
     }
   ],
-  "sns_pending": ["Instagram", "X", "DJ猫姫 TikTok"],
+  "sns_pending": ["Instagram"],
+  "sns_check": [
+    "X: x.com/ancogames（あんこ姫側では？要確認）",
+    "YouTube: @himekazoma「ひめかとゾーマの名言喫茶」（ここに載せる？要確認）"
+  ],
   "music": {
     "project": "HIMEZOMA",
     "note": "白猫ひめかと黒猫ゾーマの音楽ユニット。毎月のアニマル・ラップMVを制作中。リリース一覧はこれから追加します。"
