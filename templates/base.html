@@ -53,7 +53,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <p class="sns-row" aria-label="SNS">
-      {% for s in site.sns %}{% if s.url %}<a href="{{ s.url }}" title="{{ s.label }}">{{ s.icon }} {{ s.name }}</a>{% endif %}{% endfor %}
+      {% for g in site.link_groups %}{% for a in g.accounts %}<a href="{{ a.url }}" title="{{ a.name }}" target="_blank">{{ a.icon }} {{ a.name }}</a>{% endfor %}{% endfor %}
     </p>
     <p class="footer-links">
       <a href="/today/">今日は何の日</a>

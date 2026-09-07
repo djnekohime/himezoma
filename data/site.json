@@ -5,14 +5,27 @@
   "description": "白猫ひめかと黒猫ゾーマがおくる「今日は何の日」図鑑。366日ぶんの記念日・年中行事を、由来と語呂合わせつきで。",
   "domain": "himezoma.pro",
   "adsense_client": "",
-  "sns": [
-    { "name": "YouTube",   "icon": "▶",  "label": "YouTube（DJ猫姫 / DJ猫）", "handle": "@himekazoma", "url": "https://www.youtube.com/@himekazoma" },
-    { "name": "TikTok",    "icon": "🎵", "label": "TikTok（DJ猫姫 / DJ猫）",  "handle": "",           "url": "" },
-    { "name": "Instagram", "icon": "📷", "label": "Instagram",               "handle": "",           "url": "" },
-    { "name": "X",         "icon": "𝕏",  "label": "X",                       "handle": "",           "url": "" }
+  "link_groups": [
+    {
+      "name": "DJ猫姫 / DJ猫（今日は何の日）",
+      "note": "毎日の「今日は何の日」動画はこちら。",
+      "accounts": [
+        { "name": "DJ猫姫 YouTube", "icon": "▶",  "handle": "@DJNEKOHIME", "url": "https://www.youtube.com/@DJNEKOHIME" },
+        { "name": "DJ猫 YouTube",   "icon": "▶",  "handle": "",           "url": "https://www.youtube.com/channel/UCjvZsdBiQP1SLYddz7aiEbw" },
+        { "name": "DJ猫 TikTok",    "icon": "🎵", "handle": "@djnekocom",  "url": "https://www.tiktok.com/@djnekocom" }
+      ]
+    },
+    {
+      "name": "HIMEZOMA（音楽）",
+      "note": "毎月のアニマル・ラップMVなど、音楽活動。",
+      "accounts": [
+        { "name": "Himezoma 音楽 YouTube", "icon": "▶", "handle": "@himekacat", "url": "https://www.youtube.com/@himekacat" }
+      ]
+    }
   ],
+  "sns_pending": ["Instagram", "X", "DJ猫姫 TikTok"],
   "music": {
     "project": "HIMEZOMA",
-    "note": "毎月のアニマル・ラップMV。詳細は後日ここに。"
+    "note": "白猫ひめかと黒猫ゾーマの音楽ユニット。毎月のアニマル・ラップMVを制作中。リリース一覧はこれから追加します。"
   }
 }

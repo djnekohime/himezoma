@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>リンク</h1>
-<p class="lead">ひめか＆ゾーマ（DJ猫姫 / DJ猫）の各SNS。プロフィールの「リンク」からここへ来られます。</p>
-<ul class="link-list">
-  {% for s in site.sns %}
-  <li>
-    {% if s.url %}<a href="{{ s.url }}" rel="me">{{ s.icon }} {{ s.label }}{% if s.handle %} <span class="muted">{{ s.handle }}</span>{% endif %}</a>
-    {% else %}<span class="muted">{{ s.icon }} {{ s.label }}（準備中）</span>{% endif %}
-  </li>
-  {% endfor %}
-</ul>
-<p class="muted">※ アカウントのURL・ジャンル分けはこれから追加します。</p>
+<p class="lead">白猫ひめか＆黒猫ゾーマの各アカウント。SNSのプロフィールからここへ来られます。</p>
+
+{% for g in site.link_groups %}
+<section class="link-group">
+  <h2 class="block-title">{{ g.name }}</h2>
+  {% if g.note %}<p class="muted">{{ g.note }}</p>{% endif %}
+  <ul class="link-list">
+    {% for a in g.accounts %}
+    <li><a href="{{ a.url }}" rel="me" target="_blank">{{ a.icon }} {{ a.name }}{% if a.handle %} <span class="muted">{{ a.handle }}</span>{% endif %}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+
+{% if site.sns_pending %}
+<p class="muted">準備中：{{ site.sns_pending|join(' / ') }}（URLが決まったら追加します）</p>
+{% endif %}
 {% endblock %}
