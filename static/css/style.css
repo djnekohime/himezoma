@@ -6,12 +6,12 @@
   --bg-card:   rgba(255,252,246,.22);   /* ほぼ透明。blur で読ませる */
   --bg-card-2: rgba(255,252,246,.30);
   --veil:      rgba(250,244,234,.20);   /* 固定背景にかける“ごく薄い”ベール */
-  --ink:       #241f1b;
-  --muted:     #574c42;
-  --line:      rgba(255,255,255,.35);
-  --accent:    #a5551f;
-  --accent-soft:rgba(255,246,238,.30);
-  --link:      #8a3f1f;
+  --ink:       #2a2029;
+  --muted:     #6a5560;
+  --line:      rgba(255,255,255,.38);
+  --accent:    #cc4f88;   /* さくらピンク */
+  --accent-soft:rgba(255,238,246,.32);
+  --link:      #b63c73;
   --maxw:      42rem;
   --radius:    16px;
   --glass:     saturate(1.15) blur(16px);
@@ -47,7 +47,7 @@ body {
 .page-home .site-bg::after { background: rgba(255,251,244,.10); }
 .site-bg-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center 28%;
+  object-fit: cover; object-position: center center;
 }
 .site-header, main.wrap, .breadcrumb.wrap, .site-footer { position: relative; z-index: 1; }
 a { color: var(--link); text-decoration: none; }
@@ -104,6 +104,11 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .question, .today-jump {
   -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
   box-shadow: 0 4px 20px rgba(60,40,20,.10);
+}
+/* 切り口ページはさらに薄く */
+.page-kirikuchi .kine, .page-kirikuchi .angle-cards a {
+  background: rgba(255,252,246,.12);
+  box-shadow: 0 3px 14px rgba(60,40,20,.08);
 }
 
 .btn {
@@ -177,16 +182,17 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
   padding: .7rem 1rem; margin: 0 0 1.2rem;
 }
 
-/* day list (month page) */
-.day-list { list-style: none; padding: 0; margin: 1rem 0; }
-.day-list li { border-bottom: 1px solid var(--line); }
+/* day list (month page) ── 各行に薄いガラスフレーム */
+.day-list { list-style: none; padding: 0; margin: 1rem 0; display: grid; gap: .4rem; }
 .day-list a {
   display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: baseline;
-  gap: .6rem; padding: .7rem .2rem; color: var(--ink);
+  gap: .6rem; padding: .7rem .85rem; color: var(--ink);
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px;
+  -webkit-backdrop-filter: var(--glass); backdrop-filter: var(--glass);
 }
-.day-list a:hover { text-decoration: none; background: var(--bg-card); }
+.day-list a:hover { text-decoration: none; border-color: var(--accent); }
 .d-date { font-weight: 800; color: var(--accent); }
-.d-names { color: var(--muted); font-size: .9rem; overflow: hidden; }
+.d-names { color: var(--ink); font-size: .9rem; overflow: hidden; }
 .d-count { color: var(--muted); font-size: .78rem; }
 
 /* day page */
