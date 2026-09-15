@@ -22,4 +22,10 @@
   {% endfor %}
 </ol>
 
+<nav class="pager">
+  <a href="/today/{{ '%02d'|format(prev_m) }}/">‹ {{ month_labels[prev_m-1] }}</a>
+  <a href="/today/">12か月一覧</a>
+  <a href="/today/{{ '%02d'|format(next_m) }}/">{{ month_labels[next_m-1] }} ›</a>
+</nav>
+
 {% endblock %}
