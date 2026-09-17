@@ -223,11 +223,17 @@ def build(serve: bool = False) -> None:
             og_title=f"{label}｜今日は何の日", og_url=base + f"/kirikuchi/{key}/",
         ))
 
-    # --- リンク / 音楽（スタブ） ---
+    # --- リンク / 音楽（スタブ） / SHOP ---
     write("/links/index.html", env.get_template("links.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("リンク", None)]))
     write("/music/index.html", env.get_template("music.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("HIMEZOMA / 音楽", None)]))
+    write("/shop/index.html", env.get_template("shop.html").render(
+        **ctx, breadcrumbs=[("ホーム", "/"), ("SHOP", None)],
+        products=load_json("shop.json", []),
+        og_title=f"{site.get('shop', {}).get('name', 'SHOP')}｜デジタルアート SHOP",
+        og_description="白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ nekocatart で販売中。",
+        og_url=base + "/shop/"))
     write("/about/index.html", env.get_template("about.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("このサイトについて", None)]))
     write("/404.html", env.get_template("404.html").render(**ctx, breadcrumbs=[]))

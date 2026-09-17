@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>SHOP — {{ site.shop.name }}</h1>
+<p class="lead">白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ「{{ site.shop.name }}」で販売しています。</p>
+
+<p class="hero-actions">
+  <a class="btn" href="{{ site.shop.etsy_url }}" target="_blank" rel="noopener">Etsyショップを見る →</a>
+</p>
+
+{% if products %}
+<div class="cal-grid">
+  {% for p in products %}
+  <a href="{{ p.etsy_url }}" target="_blank" rel="noopener">
+    <img src="{{ p.image }}" alt="{{ p.title }}" loading="lazy">
+    <p class="cal-cap"><b>{{ p.title }}</b><br><span class="muted">{{ p.note }}</span></p>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="muted">作品はただいま準備中です。Etsyショップで随時公開していきます。</p>
+{% endif %}
+
+<h2 class="block-title">{{ site.shop.name }} について</h2>
+<p>ひめか＆ゾーマの世界観をベースに、テレビやモニターにそのまま映して飾れるデジタルアート作品を制作しています。</p>
+{% endblock %}
