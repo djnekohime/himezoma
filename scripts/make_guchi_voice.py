@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 r"""
-愚痴聞き猫：ひめか・ゾーマ（ElevenLabs上の自作の声「ひめか」「ZOMA」）の返事を ElevenLabs で音声化する。
+愚痴聞き猫：ひめか（自作の声「ひめか」）・ゾーマ（声「Otani」）の返事を ElevenLabs で音声化する。
 
 準備（1回だけ）: ElevenLabs の API キーを環境変数 ELEVENLABS_API_KEY に入れる
   （または C:\Users\himic\.elevenlabs_key というテキストファイルに1行で保存。リポジトリの外）。
@@ -9,6 +9,7 @@ r"""
     .venv\Scripts\python.exe scripts\make_guchi_voice.py --list          # 声の名前とIDを確認
     .venv\Scripts\python.exe scripts\make_guchi_voice.py                 # 全件
     .venv\Scripts\python.exe scripts\make_guchi_voice.py 0 2             # 0番目と2番目だけ
+    ... make_guchi_voice.py --only=ゾーマ                                   # ゾーマだけ作り直す
 
 入力: data/guchi.json の entries[].himeka / zoma
 出力: OUT_DIR/愚痴NN_ひめか.mp3, 愚痴NN_ゾーマ.mp3
@@ -20,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = Path(r"C:/Users/himic/HIMEKA避難所/愚痴カード/音声")  # ※Dドライブ不在中の暫定
 KEY_FILE = Path(r"C:/Users/himic/.elevenlabs_key")
-VOICES = {"ひめか": "ひめか", "ゾーマ": "zoma"}  # ElevenLabs 上の声の名前（大文字小文字は無視・完全一致を優先）
+VOICES = {"ひめか": "ひめか", "ゾーマ": "otani"}  # ElevenLabs 上の声の名前（大文字小文字は無視・完全一致を優先）
 MODEL = "eleven_v3"
 SETTINGS = {"stability": 0.5, "similarity_boost": 0.75, "speed": 1.0}
 API = "https://api.elevenlabs.io/v1"
@@ -66,9 +67,12 @@ def main():
         need[who] = match[0]
     entries = json.loads((ROOT / "data/guchi.json").read_text(encoding="utf-8"))["entries"]
     idx = [int(a) for a in sys.argv[1:] if a.isdigit()] or range(len(entries))
+    only = [a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--only=")]  # 例: --only=ゾーマ
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for i in idx:
         for who, field in (("ひめか", "himeka"), ("ゾーマ", "zoma")):
+            if only and who not in only:
+                continue
             audio = call("POST", "/text-to-speech/%s?output_format=mp3_44100_128" % need[who], key,
                          {"text": entries[i][field], "model_id": MODEL,
                           "language_code": "ja", "voice_settings": SETTINGS})
