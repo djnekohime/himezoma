@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 愚痴聞き猫：ひめか(Kuon)・ゾーマ(Otani) の返事を ElevenLabs で音声化する。
 
 準備（1回だけ）: ElevenLabs の API キーを環境変数 ELEVENLABS_API_KEY に入れる
