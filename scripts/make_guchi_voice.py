@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 r"""
-愚痴聞き猫：ひめか(Kuon)・ゾーマ(Otani) の返事を ElevenLabs で音声化する。
+愚痴聞き猫：ひめか・ゾーマ（ElevenLabs上の自作の声「ひめか」「ZOMA」）の返事を ElevenLabs で音声化する。
 
 準備（1回だけ）: ElevenLabs の API キーを環境変数 ELEVENLABS_API_KEY に入れる
   （または C:\Users\himic\.elevenlabs_key というテキストファイルに1行で保存。リポジトリの外）。
@@ -12,7 +12,7 @@ r"""
 
 入力: data/guchi.json の entries[].himeka / zoma
 出力: OUT_DIR/愚痴NN_ひめか.mp3, 愚痴NN_ゾーマ.mp3
-設定: さくらが使っている既存の設定に合わせる（stability .5 / similarity .75 / speed 1.0、モデル v3）。
+設定: 既存の動画で使っている設定に合わせる（stability .5 / similarity .75 / speed 1.0、モデル v3）。
 """
 import json, os, sys, urllib.request, urllib.error
 from pathlib import Path
@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = Path(r"C:/Users/himic/HIMEKA避難所/愚痴カード/音声")  # ※Dドライブ不在中の暫定
 KEY_FILE = Path(r"C:/Users/himic/.elevenlabs_key")
-VOICES = {"ひめか": "kuon", "ゾーマ": "otani"}  # ElevenLabs 上の声の名前（大文字小文字は無視）
+VOICES = {"ひめか": "ひめか", "ゾーマ": "zoma"}  # ElevenLabs 上の声の名前（大文字小文字は無視・完全一致を優先）
 MODEL = "eleven_v3"
 SETTINGS = {"stability": 0.5, "similarity_boost": 0.75, "speed": 1.0}
 API = "https://api.elevenlabs.io/v1"
@@ -60,7 +60,7 @@ def main():
         return
     need = {}
     for who, name in VOICES.items():
-        match = [vid for n, vid in ids.items() if name in n]
+        match = [vid for n, vid in ids.items() if n == name] or [vid for n, vid in ids.items() if name in n]
         if not match:
             sys.exit("声が見つかりません: %s（--list で名前を確認して、VOICES を直してください）" % name)
         need[who] = match[0]
