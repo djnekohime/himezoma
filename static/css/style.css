@@ -260,3 +260,25 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 @media (min-width: 60rem) {
   .cal-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ---- 愚痴聞き猫 ---- */
+.guchi-box, .guchi-care {
+  background: rgba(255,252,246,.30); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: .8rem 1rem; margin: 0 0 1.2rem;
+  backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+}
+.guchi-box p, .guchi-care p { margin: 0; }
+.guchi-rules { margin: .8rem 0 1.4rem; padding-left: 1.2rem; font-size: .92rem; color: var(--muted); }
+.guchi-card {
+  background: rgba(255,252,246,.30); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: .9rem 1.1rem; margin: 0 0 1rem;
+  backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+  position: relative;
+}
+.guchi-text { font-weight: 800; margin: 0 0 .6rem; }
+.guchi-banner { display: block; width: 100%; height: auto; border-radius: var(--radius); margin: 0 0 1.1rem; box-shadow: 0 3px 14px rgba(60,40,20,.15); }
+.guchi-reply { display: flex; gap: .7rem; align-items: flex-start; margin: 0 0 .7rem; }
+.guchi-reply img { width: 52px; height: 52px; border-radius: 50%; flex: none; border: 2px solid rgba(255,255,255,.7); box-shadow: 0 1px 6px rgba(60,40,20,.2); }
+.guchi-reply p { margin: 0; background: rgba(255,255,255,.45); border-radius: 14px; padding: .45rem .8rem; }
+.guchi-reply .who { display: block; font-size: .8rem; font-weight: 800; color: var(--accent); }
+.guchi-tag { position: absolute; top: .5rem; right: .8rem; margin: 0; }

@@ -234,6 +234,12 @@ def build(serve: bool = False) -> None:
         og_title=f"{site.get('shop', {}).get('name', 'SHOP')}｜デジタルアート SHOP",
         og_description="白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ nekocatart で販売中。",
         og_url=base + "/shop/"))
+    write("/guchi/index.html", env.get_template("guchi.html").render(
+        **ctx, breadcrumbs=[("ホーム", "/"), ("愚痴聞き猫", None)],
+        guchi=load_json("guchi.json", {"form_url": "", "entries": []}),
+        og_title="愚痴聞き猫｜ひめかとゾーマが愚痴を聞きます",
+        og_description="Xに書いても反応されない愚痴を、白猫ひめかと黒猫ゾーマが聞いて、返事をします。",
+        og_url=base + "/guchi/"))
     write("/about/index.html", env.get_template("about.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("このサイトについて", None)]))
     write("/404.html", env.get_template("404.html").render(**ctx, breadcrumbs=[]))

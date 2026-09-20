@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>愚痴聞き猫</h1>
+<p class="lead">Xに書いても、誰にも反応されない。そんな愚痴を、白猫ひめかと黒猫ゾーマが聞きます。</p>
+<img class="guchi-banner" src="/static/img/guchi-banner.webp" width="1600" height="686" alt="ひめかとゾーマが、お茶を前に愚痴を聞いてくれています">
+
+<div class="guchi-box">
+  <p><b>ここは「愚痴を吐いて、ちゃんと返事がもらえる場所」です。</b><br>
+  アドバイスはしません。「それはしんどいね」と受け止めるだけ。</p>
+</div>
+
+<h2 class="block-title">愚痴を送る</h2>
+{% if guchi.form_url %}
+<p class="hero-actions"><a class="btn" href="{{ guchi.form_url }}" target="_blank" rel="noopener">愚痴を送る（匿名）→</a></p>
+{% else %}
+<p class="muted">受付の準備中です。もう少し待っていてね。</p>
+{% endif %}
+<ul class="guchi-rules">
+  <li>匿名です。名前・連絡先は書かないでください。</li>
+  <li>管理人（さくら）が読んで、載せてよいものだけを掲載します。全部が載るわけではありません。</li>
+  <li>特定の人・会社・お店の名前が出るもの、悪口や中傷は載せません。</li>
+  <li>載せてほしくなくなったら、いつでも削除を依頼できます。</li>
+  <li>ひめか・ゾーマの返事は、猫キャラのことばです（AIの補助を使い、さくらが確認しています）。人が書いた返事ではありません。</li>
+</ul>
+
+<div class="guchi-care">
+  <p><b>つらい気持ちが強いとき</b><br>
+  愚痴のレベルを超えて苦しいときは、ひとりで抱えずに、電話で話せる窓口も使ってください。<br>
+  よりそいホットライン <b>0120-279-338</b>（無料・24時間）</p>
+</div>
+
+<h2 class="block-title">愚痴と猫のお返事</h2>
+{% set has_sample = guchi.entries | selectattr('kind','equalto','sample') | list | length > 0 %}
+{% if has_sample %}
+<p class="muted">※ いまは、管理人が作った「例」です。実際に届いた愚痴は、承認したものから順に載せます。</p>
+{% endif %}
+{% for e in guchi.entries %}
+<article class="guchi-card">
+  <p class="guchi-text">{{ e.text }}</p>
+  <div class="guchi-reply"><img src="/static/img/guchi-himeka.webp" width="120" height="120" alt="" loading="lazy"><p><span class="who">ひめか</span>{{ e.himeka }}</p></div>
+  <div class="guchi-reply"><img src="/static/img/guchi-zoma.webp" width="120" height="120" alt="" loading="lazy"><p><span class="who">ゾーマ</span>{{ e.zoma }}</p></div>
+  {% if e.kind == 'sample' %}<p class="muted guchi-tag">例</p>{% endif %}
+</article>
+{% endfor %}
+{% endblock %}

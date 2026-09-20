@@ -1,0 +1,27 @@
+{
+  "_comment": "愚痴聞き猫。entries[].kind='sample' は管理人が作った例（実在の投稿ではない）。form_url は Googleフォーム等の受付URL（空のうちは受付準備中と表示）。承認したものだけ entries に追加する。",
+  "form_url": "https://docs.google.com/forms/d/e/1FAIpQLSdxUIRR3kUHtxhp5jbOFaUxYbUrHdsDMMo2F1gC8hPkx0uYxA/viewform",
+  "entries": [
+    {
+      "kind": "sample",
+      "date": "2026-09-20",
+      "text": "がんばって作ったのに、誰にも見られてない気がする。",
+      "himeka": "見られてない気がする夜、あるよね。作ったっていう事実は、ちゃんとここにあるよ。ひめかは見てたよ。",
+      "zoma": "数字より、作ったやつが偉い。以上。"
+    },
+    {
+      "kind": "sample",
+      "date": "2026-09-20",
+      "text": "LINEの返事をしたのに、既読のまま何日も返ってこない。",
+      "himeka": "それはそわそわするよね。相手にも事情があるのかもしれないけど、気になっちゃう気持ちは当たり前だよ。",
+      "zoma": "待つのは疲れる。今日は待つのをやめていい。"
+    },
+    {
+      "kind": "sample",
+      "date": "2026-09-20",
+      "text": "疲れてるのに、寝る前にスマホをやめられない。",
+      "himeka": "やめられない自分を責めなくて大丈夫。今日はもう、ここでおしまいにして、ふとんに入ろ。",
+      "zoma": "……寝ろ。おれも寝る。"
+    }
+  ]
+}
