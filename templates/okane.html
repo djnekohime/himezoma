@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>ひめかとゾーマのお金ノート</h1>
+<p class="lead">お金に無頓着だった白猫ひめかが、黒猫ゾーマ先生とお金の勉強をはじめました。100日後、1年後、ひめかはお金を扱えるようになっているかな。</p>
+
+<div class="guchi-box okane-motto">
+  <p><b>お金は、どこから来て、何に変わり、何を残したか。</b></p>
+</div>
+
+<h2 class="block-title">お金ノートの考え方</h2>
+<p class="lead">ふつうの家計簿は「いくら使ったか」を書きます。お金ノートは、そのお金が<b>何に変わったか</b>まで書きます。</p>
+<ul class="okane-formula">
+  <li><span class="fx">¥490 → 食事＋楽しさ＋節約¥490</span><span class="muted">見切りのお寿司（消費・またする）</span></li>
+  <li><span class="fx">¥1,650 → 知識＋将来の価値</span><span class="muted">FPの教科書（投資）</span></li>
+  <li><span class="fx">¥980 → ほぼなし</span><span class="muted">使っていないサブスク（浪費・もうしない）</span></li>
+  <li><span class="fx">時間＋技術 → ¥5,000</span><span class="muted">入ってきたお金も「何と交換したか」を書く</span></li>
+</ul>
+<ul class="guchi-rules">
+  <li>使ったお金は<b>消費・投資・浪費</b>の3つに分けます。物で決まるのではなく、使い方で決まります。同じ本でも、読めば投資、読まなければ浪費。</li>
+  <li>得たものは、モノだけじゃありません。時間・知識・経験・楽しさ・安心・健康・人とのつながり・将来の価値も。</li>
+  <li>最後に「もう一度する？」。またする＝良い交換、もうしない＝見直し候補。</li>
+  <li>入ってきたお金は、<b>時間を使って得たか、使わずに得たか</b>も見ます。</li>
+  <li>浪費は悪じゃない。分かって使うなら、それも立派な使い方です。</li>
+</ul>
+
+<h2 class="block-title">お金の学校 STEP 0〜100</h2>
+<p class="lead">もし自分の子供にお金を教えるなら、この順番。3歳の「どっちか1つ選ぶ」から、30歳の「お金は何のためにある？」まで。年齢は目安なので、大人は STEP 1 からどんどん進んでOK。10の倍数はボスです。</p>
+<div class="guchi-box">
+  <p><b>STEP 0　お金とは、価値を交換する道具。</b><br>
+  <span class="muted">時間→お金、お金→モノ、お金→時間、お金→知識、知識→お金、お金→資産、資産→お金。人はいつも何かを交換しています。</span></p>
+</div>
+{% for ch in school %}
+<details class="okane-ch"{% if loop.first %} open{% endif %}>
+  <summary><b>STEP {{ ch.steps[0].n }}〜{{ ch.steps[-1].n }}　{{ ch.name }}</b> <span class="muted">{{ ch.age }}</span></summary>
+  <ol class="okane-steps">
+    {% for s in ch.steps %}
+    <li{% if s.n % 10 == 0 %} class="boss"{% endif %}>
+      <span class="no">STEP {{ s.n }}{% if s.n % 10 == 0 %} BOSS{% endif %}</span>
+      <b>{{ s.t }}</b>
+      <span class="d"><span class="k">やってみる</span>{{ s.do }}</span>
+      <span class="d"><span class="k">クリア</span>{{ s.ok }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+</details>
+{% endfor %}
+
+<h2 class="block-title">お金ノートのSNS</h2>
+<p class="lead">毎日のショート動画で、ひめかの成長を追いかけています。</p>
+<ul class="okane-sns">
+  {% for a in okane_links %}<li><a class="btn btn-ghost" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.icon }} {{ a.name }}</a></li>{% endfor %}
+</ul>
+<p class="muted">※お金ノートは、ひめかとゾーマの学びの記録です。特定の金融商品をすすめるものではありません。</p>
+{% endblock %}

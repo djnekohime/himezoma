@@ -36,6 +36,15 @@
       ]
     },
     {
+      "key": "okane",
+      "name": "ひめかとゾーマのお金ノート",
+      "note": "お金に無頓着だったひめかが、ゾーマ先生とお金の勉強。毎日のショート動画。",
+      "accounts": [
+        { "name": "お金ノート YouTube", "icon": "▶", "handle": "@himezomaokane", "url": "https://www.youtube.com/@himezomaokane" },
+        { "name": "お金ノート Instagram", "icon": "📷", "handle": "@himezomaokane", "url": "https://www.instagram.com/himezomaokane/" }
+      ]
+    },
+    {
       "name": "HIMEZOMA（音楽）",
       "note": "毎月のアニマル・ラップMVなど、音楽活動。",
       "accounts": [

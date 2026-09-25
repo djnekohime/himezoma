@@ -282,3 +282,20 @@ h3 { font-size: 1rem; margin: 0 0 .3rem; }
 .guchi-reply p { margin: 0; background: rgba(255,255,255,.45); border-radius: 14px; padding: .45rem .8rem; }
 .guchi-reply .who { display: block; font-size: .8rem; font-weight: 800; color: var(--accent); }
 .guchi-tag { position: absolute; top: .5rem; right: .8rem; margin: 0; }
+
+/* ---- お金ノート ---- */
+.okane-motto { text-align: center; font-size: 1.05rem; }
+.okane-formula { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .5rem; }
+.okane-formula li { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 12px; padding: .5rem .9rem; display: grid; gap: .1rem;
+  backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass); }
+.okane-formula .fx { font-weight: 800; color: var(--link); overflow-wrap: anywhere; }
+.okane-ch { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: var(--radius); padding: .6rem 1rem; margin: 0 0 .7rem;
+  backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass); }
+.okane-ch summary { cursor: pointer; }
+.okane-steps { list-style: none; margin: .6rem 0 .2rem; padding: 0; display: grid; gap: .55rem; }
+.okane-steps li { display: grid; gap: .05rem; padding: .45rem .7rem; border-radius: 10px; background: rgba(255,255,255,.35); }
+.okane-steps li.boss { background: var(--accent-soft); border: 1px solid var(--accent); }
+.okane-steps .no { font-size: .78rem; font-weight: 800; color: var(--accent); }
+.okane-steps .d { font-size: .9rem; color: var(--muted); }
+.okane-steps .k { display: inline-block; font-size: .72rem; font-weight: 800; color: var(--ink); background: rgba(255,255,255,.6); border-radius: 4px; padding: 0 .35rem; margin-right: .4rem; }
+.okane-sns { list-style: none; margin: 0 0 1rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }

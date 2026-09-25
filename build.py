@@ -240,6 +240,13 @@ def build(serve: bool = False) -> None:
         og_title="愚痴聞き猫｜ひめかとゾーマが愚痴を聞きます",
         og_description="Xに書いても反応されない愚痴を、白猫ひめかと黒猫ゾーマが聞いて、返事をします。",
         og_url=base + "/guchi/"))
+    okane_group = next((g for g in site.get("link_groups", []) if g.get("key") == "okane"), {"accounts": []})
+    write("/okane/index.html", env.get_template("okane.html").render(
+        **ctx, breadcrumbs=[("ホーム", "/"), ("お金ノート", None)],
+        school=load_json("okane_school.json", []), okane_links=okane_group["accounts"],
+        og_title="ひめかとゾーマのお金ノート｜お金の学校 STEP0〜100",
+        og_description="お金は、どこから来て、何に変わり、何を残したか。白猫ひめかと黒猫ゾーマのお金の勉強ノート。3歳から30歳までのお金の学校STEP0〜100。",
+        og_url=base + "/okane/"))
     write("/about/index.html", env.get_template("about.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("このサイトについて", None)]))
     write("/404.html", env.get_template("404.html").render(**ctx, breadcrumbs=[]))
