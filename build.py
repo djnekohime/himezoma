@@ -146,7 +146,7 @@ def build(serve: bool = False) -> None:
     DIST.mkdir(parents=True)
     if STATIC.exists():
         shutil.copytree(STATIC, DIST / "static")
-    for name in ("robots.txt", "favicon.ico", "CNAME", "ads.txt"):
+    for name in ("robots.txt", "favicon.ico", "CNAME", "ads.txt", "google29088a3bcb15ecb3.html"):
         src = ROOT / name
         if src.exists():
             shutil.copy2(src, DIST / name)
