@@ -41,7 +41,9 @@
       "note": "お金に無頓着だったひめかが、ゾーマ先生とお金の勉強。毎日のショート動画。",
       "accounts": [
         { "name": "お金ノート YouTube", "icon": "▶", "handle": "@himezomaokane", "url": "https://www.youtube.com/@himezomaokane" },
-        { "name": "お金ノート Instagram", "icon": "📷", "handle": "@himezomaokane", "url": "https://www.instagram.com/himezomaokane/" }
+        { "name": "お金ノート Instagram", "icon": "📷", "handle": "@himezomaokane", "url": "https://www.instagram.com/himezomaokane/" },
+        { "name": "お金ノート TikTok", "icon": "🎵", "handle": "@himezomaokane", "url": "https://www.tiktok.com/@himezomaokane" },
+        { "name": "お金ノート X", "icon": "𝕏", "handle": "@himezomaokane", "url": "https://x.com/himezomaokane" }
       ]
     },
     {
