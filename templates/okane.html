@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="okane-page">
 <h1>ひめかとゾーマのお金ノート</h1>
 <p class="lead">お金に無頓着だった白猫ひめかが、黒猫ゾーマ先生とお金の勉強をはじめました。100日後、1年後、ひめかはお金を扱えるようになっているかな。</p>
 
@@ -51,4 +52,5 @@
   {% for a in okane_links %}<li><a class="btn btn-ghost" href="{{ a.url }}" target="_blank" rel="noopener">{{ a.icon }} {{ a.name }}</a></li>{% endfor %}
 </ul>
 <p class="muted">※お金ノートは、ひめかとゾーマの学びの記録です。特定の金融商品をすすめるものではありません。</p>
+</div>
 {% endblock %}
