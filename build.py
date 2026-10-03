@@ -232,7 +232,7 @@ def build(serve: bool = False) -> None:
         **ctx, breadcrumbs=[("ホーム", "/"), ("SHOP", None)],
         products=load_json("shop.json", []),
         og_title=f"{site.get('shop', {}).get('name', 'SHOP')}｜デジタルアート SHOP",
-        og_description="白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ nekocatart で販売中。",
+        og_description=("白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ nekocatart で販売中。" if site.get("shop", {}).get("open") else "白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ nekocatart を準備中です。"),
         og_url=base + "/shop/"))
     write("/guchi/index.html", env.get_template("guchi.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("愚痴聞き猫", None)],

@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>SHOP — {{ site.shop.name }}</h1>
+{% if site.shop.open %}
 <p class="lead">白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアート。Etsyショップ「{{ site.shop.name }}」で販売しています。</p>
 
 <p class="hero-actions">
   <a class="btn" href="{{ site.shop.etsy_url }}" target="_blank" rel="noopener">Etsyショップを見る →</a>
 </p>
+{% else %}
+<p class="lead">白猫ひめか＆黒猫ゾーマの世界から生まれた、テレビ・モニター画面に飾れるデジタルアートを、Etsyショップ「{{ site.shop.name }}」で販売する準備をしています。オープンしたら、ここでお知らせします。</p>
+{% endif %}
 
-{% if products %}
+{% if products and site.shop.open %}
 <div class="cal-grid">
   {% for p in products %}
   <a href="{{ p.etsy_url }}" target="_blank" rel="noopener">
@@ -17,7 +21,7 @@
   {% endfor %}
 </div>
 {% else %}
-<p class="muted">作品はただいま準備中です。Etsyショップで随時公開していきます。</p>
+<p class="muted">作品はただいま準備中です。ショップのオープンまで、もう少しお待ちください。</p>
 {% endif %}
 
 <h2 class="block-title">{{ site.shop.name }} について</h2>

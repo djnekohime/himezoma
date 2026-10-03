@@ -56,7 +56,8 @@
   ],
   "shop": {
     "name": "nekocatart",
-    "etsy_url": "https://www.etsy.com/shop/nekocatart"
+    "etsy_url": "https://www.etsy.com/shop/nekocatart",
+    "open": false
   },
   "sns_pending": [],
   "sns_check": [
