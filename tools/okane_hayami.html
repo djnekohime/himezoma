@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="手取りを選ぶだけで、毎月いくら貯めて、1年後・5年後にいくらになるかが一度に分かる早見表。ケガや災害で収入が止まったときの備えの目安も出ます。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="貯金早見表｜手取りで見る、毎月の貯金と1年後">
+<meta property="og:description" content="手取りを選ぶだけ。毎月の貯金額、1年後・5年後の合計、もしものときの備えが一度に見えます。">
+<meta property="og:url" content="https://himezoma.pro/okane/hayami/">
+<meta property="og:image" content="https://himezoma.pro/static/img/ogp-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://himezoma.pro/okane/hayami/">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/static/img/favicon-180.png">
+<title>貯金早見表｜手取りで見る、毎月の貯金と1年後｜ひめかとゾーマ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+/* 夜空にハートと三日月。手取りを選ぶと、貯まる額が一度に並ぶ早見表。単一テーマ（夜）。 */
+:root{
+  --night:#140f24; --panel:#1e1736; --panel2:#271f45; --line:#3d3162;
+  --pink:#ff8fb8; --pink-d:#d9608f; --gold:#f2c879; --text:#f6effc; --muted:#b9abd8; --ok:#8fe0b4;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --f-num:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--night);color:var(--text);font-family:var(--f-body);font-size:15px;line-height:1.7;
+  background-image:radial-gradient(900px 420px at 85% -5%,rgba(255,143,184,.16),transparent 60%),radial-gradient(700px 400px at 0% 0%,rgba(242,200,121,.08),transparent 60%);
+  padding-inline:16px;padding-block:20px 56px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;gap:14px;align-items:center}
+header svg{flex:none}
+h1{font-family:var(--f-num);font-weight:800;font-size:1.9rem;line-height:1.2;margin:0;letter-spacing:.04em}
+header p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+h2{font-size:.78rem;letter-spacing:.14em;color:var(--muted);font-weight:700;margin:0 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.field-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.income{display:flex;align-items:center;gap:8px}
+.income input{width:6.4ch;background:var(--night);border:2px solid var(--pink-d);border-radius:10px;color:var(--text);
+  font-family:var(--f-num);font-weight:800;font-size:2.2rem;text-align:center;padding:2px 6px;font-variant-numeric:tabular-nums}
+.income input:focus-visible,button:focus-visible,input[type=range]:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.income span{font-size:1.1rem;font-weight:700}
+.step{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--text);font-size:1.4rem;cursor:pointer}
+.step:hover{border-color:var(--pink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:999px;padding:7px 14px;font:inherit;font-size:.9rem;cursor:pointer;min-height:40px}
+.chip:hover{border-color:var(--pink)}
+.chip[aria-pressed=true]{background:var(--pink);border-color:var(--pink);color:#2a1030;font-weight:700}
+.sub{color:var(--muted);font-size:.82rem;margin:8px 0 0}
+.group + .group{margin-top:18px}
+.ratio-line{display:flex;align-items:center;gap:12px;margin-top:12px}
+.ratio-line input[type=range]{flex:1;accent-color:var(--pink);min-width:0}
+.ratio-line output{font-family:var(--f-num);font-weight:800;font-size:1.3rem;min-width:3.5ch;text-align:right;font-variant-numeric:tabular-nums}
+details{margin-top:16px;border-top:1px dashed var(--line);padding-top:12px}
+summary{cursor:pointer;color:var(--muted);font-size:.88rem}
+.opts{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px}
+.opts label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--muted)}
+.opts input,.opts select{background:var(--night);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;min-width:9ch}
+
+.hero{background:linear-gradient(160deg,var(--panel2),var(--panel));border-color:var(--pink-d)}
+.hero .lead{font-size:.95rem;color:var(--muted);margin:0}
+.hero .monthly{font-family:var(--f-num);font-weight:800;font-size:1.4rem;margin:2px 0 14px}
+.hero .monthly b{color:var(--pink);font-size:2rem;font-variant-numeric:tabular-nums}
+.big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big .k{font-weight:700;color:var(--gold)}
+.big .v{font-family:var(--f-num);font-weight:800;font-size:3.4rem;line-height:1.1;color:var(--gold);font-variant-numeric:tabular-nums}
+.big .v small{font-size:1.2rem}
+.horizons{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.hz{background:var(--night);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.hz .k{font-size:.8rem;color:var(--muted)}
+.hz .v{font-family:var(--f-num);font-weight:800;font-size:1.5rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.miles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+.mile{border-left:3px solid var(--pink);padding:2px 0 2px 12px;font-size:.9rem}
+.mile b{font-family:var(--f-num);font-size:1.15rem}
+.interest{font-size:.82rem;color:var(--ok);margin:10px 0 0}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:430px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:.78rem;color:var(--muted);font-weight:700;background:var(--panel2)}
+tbody tr:last-child td{border-bottom:0}
+tr.on td{background:rgba(255,143,184,.16);font-weight:700}
+.rowbtn{background:none;border:0;color:var(--text);font:inherit;cursor:pointer;padding:0;text-align:left;text-decoration:underline dotted var(--pink);text-underline-offset:4px}
+.rowbtn:hover{color:var(--pink)}
+td.num{font-family:var(--f-num);font-weight:700}
+
+.bar{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+.bar div{min-width:0}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 16px;margin-top:12px;font-size:.88rem}
+.legend span.dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.legend b{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.answer{background:var(--night);border:2px solid var(--gold);border-radius:12px;padding:14px 16px}
+.a-lead{font-size:.9rem;color:var(--muted)}
+.a-val{font-family:var(--f-num);font-weight:800;font-size:2.4rem;line-height:1.2;color:var(--gold);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.a-val small{font-size:1rem;margin:0 .15em}
+.a-how{font-size:.88rem;color:var(--text);margin-top:2px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.step-card{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel2);min-width:0}
+.step-card.rec{border-color:var(--gold)}
+.step-card .t{font-size:.8rem;color:var(--muted)}
+.step-card .m{font-family:var(--f-num);font-weight:800;font-size:1.35rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.step-card .w{font-size:.8rem;color:var(--ok);margin-top:2px}
+.prep h3{font-size:1rem;margin:0 0 4px}
+.prep .ask{color:var(--muted);font-size:.86rem;margin:0 0 12px}
+tr.rec td{background:rgba(242,200,121,.14)}
+tr.rec td:first-child::after{content:"  おすすめ";font-size:.72rem;color:var(--gold);font-weight:700}
+.badge{display:inline-block;background:var(--gold);color:#2a1d05;border-radius:6px;padding:0 7px;font-size:.75rem;font-weight:700;margin-left:6px}
+.note{font-size:.8rem;color:var(--muted);line-height:1.8}
+.note p{margin:0 0 6px}
+@media (max-width:480px){
+  h1{font-size:1.5rem}
+  .big .v{font-size:2.8rem}
+  .horizons{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .hz .v{font-size:1.15rem}
+  .card{padding:14px}
+}
+@media (prefers-reduced-motion:no-preference){.big .v{transition:color .2s}}
+</style>
+
+<style>
+.back{font-size:.85rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.back a{color:var(--pink);text-decoration:underline dotted;text-underline-offset:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="back" aria-label="サイト内リンク"><a href="/okane/">← お金ノート</a><a href="/">ひめかとゾーマ himezoma.pro</a></nav>
+  <header>
+    <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+      <path d="M27 46C10 33 6 22 14 14c5-5 11-2 13 3 2-5 8-8 13-3 8 8 4 19-13 32z" fill="#ff8fb8"/>
+      <path d="M43 6a14 14 0 1 0 5 21A11 11 0 1 1 43 6z" fill="#f2c879"/>
+    </svg>
+    <div>
+      <h1>貯金早見表</h1>
+      <p>手取りを選ぶと、毎月いくら貯めて、1年後にいくらになるかが一度に見えます。</p>
+    </div>
+  </header>
+
+  <section class="card" aria-labelledby="h-in">
+    <div class="group">
+      <h2 id="h-in">毎月の手取り（口座に入る額）</h2>
+      <div class="field-row">
+        <button class="step" id="dec" type="button" aria-label="0.5万円へらす">−</button>
+        <div class="income"><input id="income" type="number" inputmode="decimal" min="5" max="100" step="0.5" value="15" aria-label="毎月の手取り（万円）"><span>万円</span></div>
+        <button class="step" id="inc" type="button" aria-label="0.5万円ふやす">＋</button>
+      </div>
+      <div class="chips" id="incChips" style="margin-top:12px"></div>
+      <p class="sub">ボーナスは別に入力できます。額面ではなく、税や保険料を引いたあとの金額で見てください。</p>
+    </div>
+    <div class="group">
+      <h2>手取りのうち、貯める割合</h2>
+      <div class="chips" id="ratioChips"></div>
+      <div class="ratio-line">
+        <input id="ratio" type="range" min="0" max="40" step="1" value="10" aria-label="貯める割合（％）">
+        <output id="ratioOut" for="ratio">10%</output>
+      </div>
+    </div>
+    <details>
+      <summary>ボーナスと利息も入れる（なくても使えます）</summary>
+      <div class="opts">
+        <label for="bonus">年に貯めるボーナス（万円）<input id="bonus" type="number" inputmode="decimal" min="0" max="500" step="1" value="0"></label>
+        <label for="rate">預金の利息（年）
+          <select id="rate">
+            <option value="0">なし（0%）</option>
+            <option value="0.2">0.2%</option>
+            <option value="0.5">0.5%</option>
+            <option value="1">1%</option>
+            <option value="3">3%</option>
+          </select>
+        </label>
+      </div>
+      <p class="sub">利息は、貯金を預金に置いた場合の例です。増えることを約束する数字ではありません。</p>
+    </details>
+  </section>
+
+  <section class="card hero" aria-live="polite" aria-labelledby="h-res">
+    <p class="lead" id="h-res">この条件だと</p>
+    <p class="monthly">毎月 <b id="monthly">1.5万円</b> を貯める</p>
+    <div class="big"><span class="k">1年後</span><span class="v" id="y1">18万円</span></div>
+    <div class="horizons">
+      <div class="hz"><div class="k">3年後</div><div class="v" id="y3"></div></div>
+      <div class="hz"><div class="k">5年後</div><div class="v" id="y5"></div></div>
+      <div class="hz"><div class="k">10年後</div><div class="v" id="y10"></div></div>
+    </div>
+    <div class="miles">
+      <div class="mile">100万円に届くまで<br><b id="m100"></b></div>
+      <div class="mile">生活費3か月分の備えが貯まるまで<br><b id="mEmg"></b></div>
+    </div>
+    <p class="interest" id="interest" hidden></p>
+  </section>
+
+  <section class="card prep" aria-labelledby="h-prep">
+    <h2 id="h-prep">もしものときの備え</h2>
+    <p class="ask">ケガ・病気・災害・事故で、収入が止まったとき。働けなくても暮らせるように、現金でどれくらい持っておくといいかの目安です。</p>
+    <div class="chips" id="workChips" style="margin-bottom:14px"></div>
+    <div class="answer">
+      <div class="a-lead" id="aLead"></div>
+      <div class="a-val" id="aVal"></div>
+      <div class="a-how" id="aHow"></div>
+    </div>
+    <div class="steps" id="steps"></div>
+    <p class="sub" id="prepNote"></p>
+  </section>
+
+  <section aria-labelledby="h-ratio">
+    <h2 id="h-ratio">貯める割合を変えると（この手取りで）</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>割合</th><th>毎月</th><th>1年後</th><th>3年後</th><th>5年後</th></tr></thead>
+      <tbody id="ratioBody"></tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="h-inc">
+    <h2 id="h-inc">手取り別の早見（<span id="ratioLabel">10%</span>貯める場合）</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>手取り（押すと切りかえ）</th><th>毎月</th><th>1年後</th><th>3年後</th><th>5年後</th></tr></thead>
+      <tbody id="incBody"></tbody>
+    </table></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-split">
+    <h2 id="h-split">手取りの使いみちの目安</h2>
+    <div class="bar" id="bar" role="img" aria-label="手取りの使いみちの割合"></div>
+    <div class="legend" id="legend"></div>
+    <p class="sub">固定費は手取りの約5割、食費は約15%を置いた目安です。家賃や家族の人数で変わります。</p>
+  </section>
+
+  <div class="note">
+    <p>この表は、毎月同じ額を貯め続けた場合の単純な計算です。物価や急な出費、収入の変化は入っていません。</p>
+    <p>投資や商品をすすめるものではありません。利息を入れたときは、毎月複利で計算しています。</p>
+    <p>入力した金額は、お使いの端末の中だけで計算します。サイトには送られません。</p>
+    <p>ひめかとゾーマのお金ノートの道具です。お金は、どこから来て、何に変わり、何を残したか。</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var S={income:15,ratio:10,bonus:0,rate:0,work:0};
+  try{var saved=JSON.parse(localStorage.getItem('chokin-hayami')||'null');if(saved&&typeof saved==='object'){
+    ['income','ratio','bonus','rate','work'].forEach(function(k){if(typeof saved[k]==='number'&&isFinite(saved[k]))S[k]=saved[k]});}}catch(e){}
+
+  var INC=[12,15,18,20,25,30], RAT=[5,10,15,20,25], TABLE_INC=[12,15,18,20,22,25,30,35];
+
+  function sim(monthly,months){
+    var i=S.rate/100/12, b=0, bonus=S.bonus*10000;
+    for(var m=1;m<=months;m++){
+      b=b*(1+i)+monthly;
+      if(m%12===0)b+=bonus;
+    }
+    return b;
+  }
+  function yen(n){
+    n=Math.round(n);
+    if(n>=10000){
+      var w=n/10000;
+      var s=w>=100?Math.round(w).toLocaleString('ja-JP'):String(Math.round(w*10)/10);
+      return s+'万円';
+    }
+    return n.toLocaleString('ja-JP')+'円';
+  }
+  function monthsTo(target,monthly){
+    if(monthly<=0&&S.bonus<=0)return null;
+    var i=S.rate/100/12,b=0,bonus=S.bonus*10000;
+    for(var m=1;m<=600;m++){
+      b=b*(1+i)+monthly; if(m%12===0)b+=bonus;
+      if(b>=target)return m;
+    }
+    return null;
+  }
+  function span(m){
+    if(m===null)return '50年以上かかります';
+    var y=Math.floor(m/12),r=m%12;
+    if(y===0)return '約'+r+'か月';
+    return '約'+y+'年'+(r?r+'か月':'');
+  }
+  function monthlyOf(income,ratio){return Math.round(income*10000*ratio/100)}
+
+  function save(){try{localStorage.setItem('chokin-hayami',JSON.stringify(S))}catch(e){}}
+
+  function buildChips(){
+    var ic=$('incChips');ic.innerHTML='';
+    INC.forEach(function(v){
+      var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v+'万円';b.setAttribute('data-v',v);
+      b.addEventListener('click',function(){setIncome(v)});ic.appendChild(b);
+    });
+    var rc=$('ratioChips');rc.innerHTML='';
+    [[5,'ゆるく 5%'],[10,'ふつう 10%'],[15,'がんばる 15%'],[20,'先取り 20%']].forEach(function(p){
+      var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=p[1];b.setAttribute('data-v',p[0]);
+      b.addEventListener('click',function(){setRatio(p[0])});rc.appendChild(b);
+    });
+  }
+  function buildWork(){
+    var wc=$('workChips');wc.innerHTML='';
+    [[0,'会社員・公務員'],[1,'自営・フリーランス・パートなど、収入がゆれる']].forEach(function(p){
+      var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=p[1];b.setAttribute('data-v',p[0]);
+      b.addEventListener('click',function(){S.work=p[0];render()});wc.appendChild(b);
+    });
+  }
+  function setIncome(v){v=Math.max(5,Math.min(100,Math.round(v*2)/2));S.income=v;render()}
+  function setRatio(v){S.ratio=Math.max(0,Math.min(40,v));render()}
+
+  function render(){
+    var inc=S.income, mo=monthlyOf(inc,S.ratio);
+    $('income').value=inc;
+    $('ratio').value=S.ratio;$('ratioOut').textContent=S.ratio+'%';$('ratioLabel').textContent=S.ratio+'%';
+    $('bonus').value=S.bonus;$('rate').value=String(S.rate);
+    Array.prototype.forEach.call($('incChips').children,function(b){b.setAttribute('aria-pressed',String(Number(b.getAttribute('data-v'))===inc))});
+    Array.prototype.forEach.call($('ratioChips').children,function(b){b.setAttribute('aria-pressed',String(Number(b.getAttribute('data-v'))===S.ratio))});
+
+    $('monthly').textContent=yen(mo);
+    var y1=sim(mo,12);
+    $('y1').textContent=yen(y1);
+    $('y3').textContent=yen(sim(mo,36));
+    $('y5').textContent=yen(sim(mo,60));
+    $('y10').textContent=yen(sim(mo,120));
+    $('m100').textContent=span(monthsTo(1000000,mo));
+    var living=inc*10000-mo;
+    $('mEmg').textContent=span(monthsTo(living*3,mo))+'（'+yen(living*3)+'）';
+    var it=$('interest');
+    if(S.rate>0){var principal=mo*12+S.bonus*10000;it.hidden=false;it.textContent='1年後のうち、利息は約'+yen(Math.max(0,y1-principal))+'です。'}
+    else it.hidden=true;
+
+    Array.prototype.forEach.call($('workChips').children,function(b){b.setAttribute('aria-pressed',String(Number(b.getAttribute('data-v'))===S.work))});
+    var rec=S.work===0?[3,6]:[6,12];
+    var lo=living*rec[0],hi=living*rec[1];
+    $('aLead').textContent='あなたの目安（生活費が毎月'+yen(living)+'のとき）';
+    $('aVal').innerHTML=yen(lo)+'<small>〜</small>'+yen(hi);
+    $('aHow').textContent='生活費の'+rec[0]+'か月分から'+rec[1]+'か月分です。まずは下の小さな目標から。';
+    var st=$('steps');st.innerHTML='';
+    [[1,'STEP1　まず1か月分'],[3,'STEP2　3か月分'],[6,'STEP3　6か月分'],[12,'STEP4　12か月分']].forEach(function(p){
+      var need=living*p[0],d=document.createElement('div');
+      d.className='step-card'+(rec.indexOf(p[0])>=0?' rec':'');
+      d.innerHTML='<div class="t">'+p[1]+'</div><div class="m">'+yen(need)+'</div><div class="w">'+span(monthsTo(need,mo))+'で届く</div>';
+      st.appendChild(d);
+    });
+    $('prepNote').textContent=(S.work===0
+      ?'会社員・公務員は、休んだときの公的な保障がつく場合があるので、まず3か月分が目安です。'
+      :'自営・フリーランス・パートなどは、休んだ間の保障が少ないことが多いので、6か月分から12か月分が目安です。')
+      +'制度は加入先や契約で違うので、ご自身の保障も確認してください。現金を自宅に置くときは、10万円など区切りで銀行へ移すと安全です。';
+
+    var rb=$('ratioBody');rb.innerHTML='';
+    RAT.forEach(function(r){
+      var m=monthlyOf(inc,r),tr=document.createElement('tr');
+      if(r===S.ratio)tr.className='on';
+      tr.innerHTML='<td>'+r+'%</td><td class="num">'+yen(m)+'</td><td class="num">'+yen(sim(m,12))+'</td><td class="num">'+yen(sim(m,36))+'</td><td class="num">'+yen(sim(m,60))+'</td>';
+      rb.appendChild(tr);
+    });
+    var ib=$('incBody');ib.innerHTML='';
+    TABLE_INC.forEach(function(v){
+      var m=monthlyOf(v,S.ratio),tr=document.createElement('tr');
+      if(v===inc)tr.className='on';
+      var td=document.createElement('td'),bt=document.createElement('button');
+      bt.type='button';bt.className='rowbtn';bt.textContent=v+'万円';bt.addEventListener('click',function(){setIncome(v);window.scrollTo({top:0,behavior:'smooth'})});
+      td.appendChild(bt);tr.appendChild(td);
+      [m,sim(m,12),sim(m,36),sim(m,60)].forEach(function(x){var c=document.createElement('td');c.className='num';c.textContent=yen(x);tr.appendChild(c)});
+      ib.appendChild(tr);
+    });
+
+    var fixed=50,food=15,save_=S.ratio,free=Math.max(0,100-fixed-food-save_);
+    var parts=[['固定費（家賃・光熱・通信など）',fixed,'#6b5aa8'],['食費',food,'#c58a5a'],['貯金',save_,'#ff8fb8'],['自由に使う',free,'#f2c879']];
+    var bar=$('bar'),lg=$('legend');bar.innerHTML='';lg.innerHTML='';
+    var total=parts.reduce(function(a,p){return a+p[1]},0)||1;
+    parts.forEach(function(p){
+      if(p[1]>0){var d=document.createElement('div');d.style.width=(p[1]/total*100)+'%';d.style.background=p[2];bar.appendChild(d)}
+      var l=document.createElement('div');
+      l.innerHTML='<span class="dot" style="background:'+p[2]+'"></span>'+p[0]+' <b>'+yen(inc*10000*p[1]/100)+'</b>';
+      lg.appendChild(l);
+    });
+    save();
+  }
+
+  buildChips();buildWork();
+  $('income').addEventListener('change',function(){var v=parseFloat(this.value);if(isFinite(v))setIncome(v);else render()});
+  $('inc').addEventListener('click',function(){setIncome(S.income+0.5)});
+  $('dec').addEventListener('click',function(){setIncome(S.income-0.5)});
+  $('ratio').addEventListener('input',function(){setRatio(parseInt(this.value,10)||0)});
+  $('bonus').addEventListener('change',function(){var v=parseFloat(this.value);S.bonus=isFinite(v)?Math.max(0,Math.min(500,v)):0;render()});
+  $('rate').addEventListener('change',function(){S.rate=parseFloat(this.value)||0;render()});
+  render();
+})();
+</script>
+
+</body>
+</html>

@@ -247,6 +247,8 @@ def build(serve: bool = False) -> None:
         og_title="ひめかとゾーマのお金ノート｜お金の学校 STEP0〜100",
         og_description="お金は、どこから来て、何に変わり、何を残したか。白猫ひめかと黒猫ゾーマのお金の勉強ノート。3歳から30歳までのお金の学校STEP0〜100。",
         og_url=base + "/okane/"))
+    # 道具ページ（単独の完成HTML。サイトの白い世界観とは別の夜デザイン）
+    write_raw("/okane/hayami/index.html", (ROOT / "tools" / "okane_hayami.html").read_text(encoding="utf-8"))
     write("/about/index.html", env.get_template("about.html").render(
         **ctx, breadcrumbs=[("ホーム", "/"), ("このサイトについて", None)]))
     write("/404.html", env.get_template("404.html").render(**ctx, breadcrumbs=[]))
