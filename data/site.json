@@ -62,6 +62,13 @@
         { "name": "ひめぞまのハロウィン（40個）", "icon": "🎃", "handle": "", "url": "https://store.line.me/stickershop/product/37183164/ja" },
         { "name": "ひめぞまのしんどい日（40個）", "icon": "😮‍💨", "handle": "", "url": "https://store.line.me/stickershop/product/37190190/ja" }
       ]
+    },
+    {
+      "name": "GIPHY（動くスタンプ）",
+      "note": "ひめか＆ゾーマの動くスタンプ。SNSやメッセージでご自由にお使いください。",
+      "accounts": [
+        { "name": "GIPHY（ひめぞま）", "icon": "✨", "handle": "@himezoma", "url": "https://giphy.com/channel/himezoma" }
+      ]
     }
   ],
   "shop": {
