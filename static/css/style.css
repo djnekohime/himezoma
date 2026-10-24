@@ -66,7 +66,8 @@ strong { font-weight: 700; }
 .brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; color: var(--ink); text-shadow: var(--tshadow); }
 .brand:hover { text-decoration: none; }
 .brand-avatar { width: 36px; height: 36px; border-radius: 50%; flex: none; filter: drop-shadow(0 1px 4px rgba(0,0,0,.25)); }
-.brand-text { font-size: .96rem; }
+.brand-text { font-size: .96rem; display: flex; flex-direction: column; line-height: 1.25; }
+.brand-presents { font-size: .68rem; font-weight: 700; letter-spacing: .12em; color: var(--accent); }
 .site-nav { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .92rem; }
 .site-nav a { color: var(--ink); font-weight: 700; text-shadow: var(--tshadow); }
 .site-nav a:hover { color: var(--accent); text-decoration: none; }
